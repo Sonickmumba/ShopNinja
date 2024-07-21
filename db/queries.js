@@ -33,27 +33,6 @@ const deleteUser = async (id) => {
   return results.rows[0];
 };
 
-// const registerUser = async (req, res) => {
-//   const { name, email, password } = req.body;
-
-//   try {
-//     // hash the password first
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     pool.query(
-//       'INSERT INTO USERS (name, email, password) VALUES ($1, $2, $3) RETURNING id', [name, email, hashedPassword], (err,results) => {
-//         if (err) throw err;
-//         res.status(201).send(`You have successfully been registerd with ID: ${results.rows[0].id}`);
-//       }
-//     )
-//   } catch (error) {
-//     res.status(500).send(error.message);
-//   }
-
-// }
-
-
-
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
