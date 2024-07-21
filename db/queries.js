@@ -12,13 +12,13 @@ const getUserById = async (id) => {
   return results.rows[0];
 };
 
-const createUser = async (name, email) => {
-  const results = await pool.query(
-    'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id',
-    [name, email]
-  );
-  return results.rows[0].id;
-};
+// const createUser = async (name, email) => {
+//   const results = await pool.query(
+//     'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id',
+//     [name, email]
+//   );
+//   return results.rows[0].id;
+// };
 
 const updateUser = async (id, name, email) => {
   const results = await pool.query(
