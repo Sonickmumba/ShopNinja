@@ -26,7 +26,7 @@ app.use(session({
 
 // mount passport and session
 app.use(passport.initialize());
-app.user(passport.session());
+app.use(passport.session());
 
 app.use('/api', userRoutes);
 
