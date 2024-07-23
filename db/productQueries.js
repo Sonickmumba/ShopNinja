@@ -11,7 +11,13 @@ const createProduct = async (name, description, price, stock) => {
 
 // get all products with optional filters
 const getProducts = async (category, price_min, price_max) => {
-  let query = 'SELECT * FROM products WHERE 1 = 1';
+  // let query = 'SELECT * FROM products WHERE 1 = 1';
+
+  let query = `
+    SELECT p.* FROM products p
+    LEFT JOIN product_categories pc ON p.id = pc.product_id
+    WHERE 1=1
+  `;
   const params = [];
 
   if (category) {
@@ -54,11 +60,26 @@ const updateProduct = async (id, name, description, price, stock) => {
   return result.rows[0];
 };
 
-// Delete a product
+// // Delete a product
+// const deleteProduct = async (id) => {
+//   const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
+//   return result.rows[0];
+// };
+
 const deleteProduct = async (id) => {
-  const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
-  return result.rows[0];
+  try {
+    // Delete related entries from product_categories first
+    await pool.query('DELETE FROM product_categories WHERE product_id = $1', [id]);
+    
+    // Then delete the product from products
+    const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    throw error;
+  }
 };
+
 
 module.exports = {
   createProduct,
