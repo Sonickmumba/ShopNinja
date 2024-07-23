@@ -60,12 +60,9 @@ const updateProduct = async (id, name, description, price, stock) => {
   return result.rows[0];
 };
 
-// // Delete a product
-// const deleteProduct = async (id) => {
-//   const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
-//   return result.rows[0];
-// };
 
+// Because the product connected to category via products_category table
+// we need to delete first from the product_categories table and then the product table
 const deleteProduct = async (id) => {
   try {
     // Delete related entries from product_categories first
