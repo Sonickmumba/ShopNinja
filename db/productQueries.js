@@ -50,7 +50,7 @@ const getProductById = async (id) => {
 // Update a product
 const updateProduct = async (id, name, description, price, stock) => {
   const result = await pool.query(
-    "UPDATE products SET name = $1, description = $2, price = $3, stock = $4, updated_at = CURRENT_TIMESTAMP WHERE id = $5 RETURNING *",
+    "UPDATE products SET name = $1, description = $2, price = $3, stock = $4 WHERE id = $5 RETURNING *",
     [name, description, price, stock, id]
   );
   return result.rows[0];
