@@ -45,12 +45,12 @@ const updateProduct = async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     const { name, description, price, stock } = req.body;
-    const updatedProduct = await db.updateProduct(name, description, price, stock);
+    const updatedProduct = await db.updateProduct(id, name, description, price, stock);
 
     if (!updatedProduct) {
       return res.status(404).json({ error: 'Product not found'});
     }
-    res.status(200).json(updatedProduct);
+    res.status(200).json({ message: 'Product updated successfully', updatedProduct});
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
