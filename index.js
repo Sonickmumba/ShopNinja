@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const userRoutes = require('./routes/userRoutes');
+const cartRoutes = require('./routes/cartRoutes')
 const productRoutes = require('./routes/productRoutes');
 const db = require('./db/queries');
 const initializePassport = require('./config/passport');
@@ -31,6 +32,7 @@ app.use(passport.session());
 
 app.use('/api', userRoutes);
 app.use('/api', productRoutes);
+app.use('/api', cartRoutes);
 
 app.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API Template by Sonick Mumba' });
