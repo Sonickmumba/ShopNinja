@@ -25,7 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: process.env.SESSION_SECRET || 'default_secret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false }
 }));
 
 // mount passport and session
@@ -44,13 +45,6 @@ app.get('/test', (req, res) => {
   } else {
     res.json({ message: 'Not authenticated' });
   }
-});
-
-app.use((req, res, next) => {
-  console.log('Request Headers:', req.headers);
-  console.log('Request Cookies:', req.cookies);
-  console.log('Request Body:', req.body);
-  next();
 });
 
 
