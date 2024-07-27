@@ -2,10 +2,10 @@
 
 // paymentService.js
 
-const processPayment = async (paymentDetails) => {
+const processPayment = async (payment_details) => {
   // Mock payment processing logic
   // Replace with actual payment gateway integration (e.g., Stripe, PayPal)
-  if (paymentDetails.cardNumber && paymentDetails.amount) {
+  if (payment_details.cardNumber && payment_details.amount) {
     // Simulate payment success
     return { success: true, transactionId: 'txn_123456' };
   } else {
@@ -15,5 +15,5 @@ const processPayment = async (paymentDetails) => {
 };
 
 module.exports = {
-  processPayment
+  processPayment,
 };
