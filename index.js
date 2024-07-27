@@ -32,11 +32,28 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/users', userRoutes);
+app.use('/api', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/cart', checkoutRoutes);
 app.use('/api/orders', orderRoutes);
+
+app.get('/test', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ message: 'Authenticated', user: req.user });
+  } else {
+    res.json({ message: 'Not authenticated' });
+  }
+});
+
+app.use((req, res, next) => {
+  console.log('Request Headers:', req.headers);
+  console.log('Request Cookies:', req.cookies);
+  console.log('Request Body:', req.body);
+  next();
+});
+
+
 
 app.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API Template by Sonick Mumba' });
