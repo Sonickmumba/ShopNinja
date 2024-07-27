@@ -1,6 +1,9 @@
 const orderQueries = require('../db/orderQueries');
 
 const getOrders = async (req, res) => {
+  console.log('Request params:', req.params);
+  console.log('Request body:', req.body);
+  console.log('Request user:', req.user); // Debugging line
   const user_id = req.user.id;
 
   try {
@@ -12,7 +15,6 @@ const getOrders = async (req, res) => {
   }
 };
 
-// controllers/orderController.js
 
 const getOrderDetails = async (req, res) => {
   const user_id = req.user.id;
