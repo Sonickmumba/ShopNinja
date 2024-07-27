@@ -4,11 +4,11 @@ const passport = require('passport');
 
 const router = express.Router();
 
-router.get('/', userController.getUsers);
-router.get('/:id', userController.getUserById);
-router.post('/', userController.createUser);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+router.get('/users', userController.getUsers);
+router.get('/users/:id', userController.getUserById);
+router.post('/users', userController.createUser);
+router.put('/users/:id', userController.updateUser);
+router.delete('/users/:id', userController.deleteUser);
 
 // Authenticated user routes
 router.post('/login', passport.authenticate('local', {
