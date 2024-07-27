@@ -1,19 +1,38 @@
 const orderQueries = require('../db/orderQueries');
 
-const getOrders = async (req, res) => {
-  console.log('Request params:', req.params);
-  console.log('Request body:', req.body);
-  console.log('Request user:', req.user); // Debugging line
-  const user_id = req.user.id;
+// const getOrders = async (req, res) => {
+//   console.log('Request params:', req.params);
+//   console.log('Request body:', req.body);
+//   console.log('Request user:', req.user); // Debugging line
+//   const user_id = req.user.id;
 
+//   try {
+//     const orders = await orderQueries.getOrdersByUser(user_id);
+//     res.status(200).json(orders);
+//   } catch (error) {
+//     console.error('Error fetching orders:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
+
+const getOrders = async (req, res) => {
   try {
+    console.log('Request user:', req.user);
+
+    if (!req.user) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    const user_id = req.user.id;
     const orders = await orderQueries.getOrdersByUser(user_id);
     res.status(200).json(orders);
   } catch (error) {
     console.error('Error fetching orders:', error);
+    // console.error('Error fetching orders:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 
 const getOrderDetails = async (req, res) => {
@@ -38,13 +57,6 @@ const getOrderDetails = async (req, res) => {
 };
 
 module.exports = {
+  getOrders,
   getOrderDetails,
-  getOrderDetails,
-  getOrders
 };
-
-
-
-// module.exports = {
-//   getOrders,
-// };
