@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const db = require('./db/queries');
 const initializePassport = require('./config/passport');
 
@@ -35,6 +36,7 @@ app.use('/api', userRoutes);
 app.use('/api', productRoutes);
 app.use('/api', cartRoutes);
 app.use('/api', checkoutRoutes);
+app.use('/api', orderRoutes);
 
 app.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API Template by Sonick Mumba' });
