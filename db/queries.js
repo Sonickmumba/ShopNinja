@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 const getUsers = async () => {
   const results = await pool.query('SELECT * FROM users order by id asc');
-  console.log(results.rows);
   return results.rows;
 };
 
