@@ -1,7 +1,6 @@
 const pool = require("../config/db");
 
 const createOrder = async (user_id, total, status) => {
-  // console.log('Creating order with:', { user_id, total, status });
   const result = await pool.query(
     "INSERT INTO orders (user_id, total, status) values ($1, $2, $3) RETURNING  id",
     [user_id, total, status]
