@@ -4,7 +4,10 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const userRoutes = require('./routes/userRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 const productRoutes = require('./routes/productRoutes');
+const checkoutRoutes = require('./routes/checkoutRoutes');
+const orderRoutes = require('./routes/orderRoutes')
 const db = require('./db/queries');
 const initializePassport = require('./config/passport');
 
@@ -20,9 +23,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
-  secret: 'Jamiesonick@_12',
+  secret: process.env.SESSION_SECRET || 'default_secret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false }
 }));
 
 // mount passport and session
@@ -30,7 +34,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', userRoutes);
-app.use('/api', productRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/cart', checkoutRoutes);
+app.use('/api/orders', orderRoutes);
+
+app.get('/test', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ message: 'Authenticated', user: req.user });
+  } else {
+    res.json({ message: 'Not authenticated' });
+  }
+});
+
+
 
 app.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API Template by Sonick Mumba' });
