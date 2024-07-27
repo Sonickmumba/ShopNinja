@@ -2,7 +2,8 @@ const db = require('../db/cartsQueries');
 
 // Create a new cart
 const createCart = async (req, res) => {
-  const { user_id } = req.body;
+  // const { user_id } = req.body.user_id;
+  const user_id = parseInt(req.body.user_id, 10);
   try {
     const cartId = await db.createCart(user_id);
     res.status(201).json({ cart_id: cartId });
@@ -27,7 +28,7 @@ const addToCart = async (req, res) => {
 
 // Get the contents of a cart
 const getCart = async (req, res) => {
-  const cartId = parseInt(req.params.cartId, 10);
+  const cartId = parseInt(req.params.id, 10);
   try {
     const cartItems = await db.getCart(cartId);
     res.status(200).json(cartItems);
