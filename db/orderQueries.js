@@ -36,8 +36,56 @@ const clearCart = async (cart_id) => {
   await pool.query("DELETE FROM cart_items WHERE cart_id = $1", [cart_id]);
 };
 
+// db/orderQueries.js
+
+const getOrdersByUser = async (user_id) => {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM orders WHERE user_id = $1',
+      [user_id]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error('Error fetching orders by user:', error);
+    throw error;
+  }
+};
+
+// db/orderQueries.js
+
+const getOrderById = async (order_id) => {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM orders WHERE id = $1',
+      [order_id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error fetching order by ID:', error);
+    throw error;
+  }
+};
+
+const getOrderItemsByOrderId = async (order_id) => {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM order_items WHERE order_id = $1',
+      [order_id]
+    );
+    return result.rows;
+  } catch (error) {
+    console.error('Error fetching order items by order ID:', error);
+    throw error;
+  }
+};
+
+
+
 module.exports = {
   createOrder,
   createOrderItems,
   clearCart,
+  getOrdersByUser,
+  getOrderById,
+  getOrderItemsByOrderId,
 };
