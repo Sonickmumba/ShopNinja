@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const userRoutes = require('./routes/userRoutes');
-const cartRoutes = require('./routes/cartRoutes')
+const cartRoutes = require('./routes/cartRoutes');
 const productRoutes = require('./routes/productRoutes');
 const db = require('./db/queries');
 const initializePassport = require('./config/passport');
@@ -21,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
-  secret: 'Jamiesonick@_12',
+  secret: process.env.SESSION_SECRET || 'default_secret',
   resave: false,
   saveUninitialized: false
 }));
