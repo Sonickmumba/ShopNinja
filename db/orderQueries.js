@@ -42,9 +42,6 @@ const createOrderItems = async (order_id, cartItems) => {
     
     const values = cartItems.flatMap(item => [order_id, item.product_id, item.quantity, item.price]);
 
-    console.log('Executing query:', query); // Log the query for debugging
-    console.log('Values:', values); // Log the values for debugging
-
     await pool.query(query, values);
   } catch (error) {
     console.error('Error creating order items:', error);
