@@ -1,4 +1,5 @@
-const pool = require("../config/db");
+// const pool = require("../config/db");
+const pool = require('..//models/database')
 
 const createOrder = async (user_id, total, status) => {
   const result = await pool.query(
