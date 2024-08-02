@@ -1,4 +1,5 @@
-const pool = require("../config/db");
+// const pool = require("../config/db");
+const pool = require('..//models/database')
 
 // Create a new product
 const createProduct = async (name, description, price, stock) => {
