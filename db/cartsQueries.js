@@ -1,4 +1,5 @@
-const pool = require('../config/db');
+// const pool = require('../config/db');
+const pool = require('..//models/database')
 
 // Create a new cart
 const createCart = async (user_id) => {
