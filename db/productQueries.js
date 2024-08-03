@@ -29,7 +29,8 @@ const getProducts = async (categoryName, price_min, price_max) => {
 
   if (categoryName) {
     query += ` AND c.name = $${params.length + 1}`;
-    params.push(categoryName);
+    const name = categoryName.toLowerCase();
+    params.push(name.charAt(0).toUpperCase() + name.slice(1));
   }
 
   if (price_min) {
