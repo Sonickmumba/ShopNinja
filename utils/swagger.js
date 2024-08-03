@@ -36,7 +36,7 @@ const swaggerOption = {
 
     schemes: ['http', 'https']
   },
-  apis: ['./routes/userRoutes.js'],
+  apis: ['./routes/userRoutes.js', './routes/productRoutes.js'],
 }
 
 const specs = swaggerJSDoc(swaggerOption);
