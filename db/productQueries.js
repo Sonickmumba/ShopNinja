@@ -11,19 +11,25 @@ const createProduct = async (name, description, price, stock) => {
 };
 
 // get all products with optional filters
-const getProducts = async (category, price_min, price_max) => {
+const getProducts = async (categoryName, price_min, price_max) => {
   // let query = 'SELECT * FROM products WHERE 1 = 1';
 
   let query = `
     SELECT p.* FROM products p
     LEFT JOIN product_categories pc ON p.id = pc.product_id
+    LEFT JOIN categories c ON pc.category_id = c.id 
     WHERE 1=1
   `;
   const params = [];
 
-  if (category) {
-    query += `AND category_id = $${params.length + 1}`;
-    params.push(category);
+  // if (category) {
+  //   query += `AND category_id = $${params.length + 1}`;
+  //   params.push(category);
+  // }
+
+  if (categoryName) {
+    query += ` AND c.name = $${params.length + 1}`;
+    params.push(categoryName);
   }
 
   if (price_min) {
@@ -36,8 +42,12 @@ const getProducts = async (category, price_min, price_max) => {
     params.push(price_max);
   }
 
-  const result = await pool.query(query, params);
-  return result.rows;
+  try {
+    const result = await pool.query(query, params);
+    return result.rows;
+  } catch (error) {
+    throw new Error('Database query failed');
+  }
 };
 
 // get product by id
