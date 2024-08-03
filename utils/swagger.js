@@ -12,14 +12,28 @@ const swaggerOption = {
       contact: {
         name: 'Sonick'
       },
-      servers: [
-        {
-          url: 'http://localhost:3000/',
-          description: 'local server',
-        }
-      ]
-
     },
+    servers: [
+      {
+        url: 'http://localhost:3000/',
+        description: 'local server',
+      }
+    ],
+
+    components: {
+      securitySchemes: {
+        basicAuth: {
+          type: 'http',
+          scheme: 'basic',
+        },
+      },
+    },
+    security: [
+      {
+        basicAuth: [],
+      },
+    ],
+
     schemes: ['http', 'https']
   },
   apis: ['./routes/userRoutes.js'],
