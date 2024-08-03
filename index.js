@@ -20,7 +20,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Swagger setup
-swaggerDocs(app);
+swaggerDocs(app, port);
 
 // initialize passport
 initializePassport(passport);
