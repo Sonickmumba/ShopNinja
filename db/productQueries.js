@@ -29,7 +29,7 @@ const getProducts = async (categoryName, price_min, price_max) => {
 
   if (categoryName) {
     query += ` AND c.name = $${params.length + 1}`;
-    const name = categoryName.toLowerCase();
+    let name = categoryName.toLowerCase();
     params.push(name.charAt(0).toUpperCase() + name.slice(1));
   }
 
