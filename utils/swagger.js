@@ -26,8 +26,16 @@ const swaggerOption = {
 }
 
 const specs = swaggerJSDoc(swaggerOption);
-const swaggerDocs = (app) => {
+const swaggerDocs = (app, port) => {
+
+  // swagger page
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+  // Docs in JSON format
+  app.get('/docs.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(specs);
+  });
+
 };
 
 module.exports = swaggerDocs;
