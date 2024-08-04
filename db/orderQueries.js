@@ -45,6 +45,7 @@ const getOrdersByUser = async (user_id) => {
       'SELECT * FROM orders WHERE user_id = $1',
       [user_id]
     );
+    console.log(result.rows);
     return result.rows;
   } catch (error) {
     console.error('Error fetching orders by user:', error);
