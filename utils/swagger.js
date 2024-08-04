@@ -40,6 +40,7 @@ const swaggerOption = {
     "./routes/productRoutes.js",
     "./routes/orderRoutes.js",
     "./routes/cartRoutes.js",
+    "./routes/checkoutRoutes.js"
   ],
 };
 
