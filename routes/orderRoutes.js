@@ -41,6 +41,12 @@ const router = express.Router();
 
 router.get('/', passport.authenticate('local', { session: true }), orderController.getOrders);
 
+// router.get('/', (req, res, next) => {
+//   console.log('Request headers:', req.headers);
+//   console.log('Request query:', req.query);
+//   next();
+// }, orderController.getOrders);
+
 /**
  * @swagger
  * /api/orders/{orderId}:
