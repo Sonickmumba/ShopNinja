@@ -9,6 +9,17 @@ const router = express.Router();
  *   post:
  *     summary: Create a new cart
  *     description: Create a new shopping cart for a user.
+ *     requestBody:
+ *       description: JSON object containing user ID to create a cart
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_id:
+ *                 type: integer
+ *                 example: 1
  *     responses:
  *       201:
  *         description: Cart created successfully
@@ -30,7 +41,7 @@ router.post('/', cartController.createCart);
 
 /**
  * @swagger
- * /api/cart/{cartId}:
+ * /cart/{cartId}:
  *   post:
  *     summary: Add item to cart
  *     description: Add a specific item to an existing cart.
@@ -41,19 +52,23 @@ router.post('/', cartController.createCart);
  *         schema:
  *           type: integer
  *         description: The ID of the cart to which the item will be added
- *       - in: body
- *         name: item
- *         description: The item details to be added to the cart
- *         required: true
- *         schema:
- *           type: object
- *           properties:
- *             productId:
- *               type: integer
- *               example: 101
- *             quantity:
- *               type: integer
- *               example: 2
+ *     requestBody:
+ *       description: JSON object containing product ID, quantity, and price to add to the cart
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               product_id:
+ *                 type: integer
+ *                 example: 2
+ *               quantity:
+ *                 type: integer
+ *                 example: 3
+ *               price:
+ *                 type: number
+ *                 example: 19.99
  *     responses:
  *       200:
  *         description: Item added to cart successfully
@@ -78,10 +93,10 @@ router.post('/:cartId', cartController.addToCart);
 
 /**
  * @swagger
- * /api/cart/{id}:
+ * /cart/{id}:
  *   get:
- *     summary: Get cart details
- *     description: Retrieve the details of a specific cart.
+ *     summary: Get cart contents
+ *     description: Retrieve the contents of a specific cart.
  *     parameters:
  *       - in: path
  *         name: id
@@ -91,7 +106,7 @@ router.post('/:cartId', cartController.addToCart);
  *         description: The ID of the cart to retrieve
  *     responses:
  *       200:
- *         description: Cart details retrieved successfully
+ *         description: Cart contents retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -105,15 +120,18 @@ router.post('/:cartId', cartController.addToCart);
  *                   items:
  *                     type: object
  *                     properties:
- *                       productId:
- *                         type: integer
- *                         example: 101
- *                       quantity:
+ *                       product_id:
  *                         type: integer
  *                         example: 2
- *                 totalPrice:
+ *                       quantity:
+ *                         type: integer
+ *                         example: 3
+ *                       price:
+ *                         type: number
+ *                         example: 19.99
+ *                 total_price:
  *                   type: number
- *                   example: 199.98
+ *                   example: 59.97
  *       404:
  *         description: Cart not found
  */
