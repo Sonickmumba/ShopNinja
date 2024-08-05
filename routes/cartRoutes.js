@@ -41,7 +41,7 @@ router.post('/', cartController.createCart);
 
 /**
  * @swagger
- * /cart/{cartId}:
+ * /api/cart/{cartId}:
  *   post:
  *     summary: Add item to cart
  *     description: Add a specific item to an existing cart.
@@ -93,7 +93,7 @@ router.post('/:cartId', cartController.addToCart);
 
 /**
  * @swagger
- * /cart/{id}:
+ * /api/cart/{id}:
  *   get:
  *     summary: Get cart contents
  *     description: Retrieve the contents of a specific cart.
