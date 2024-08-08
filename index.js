@@ -12,7 +12,6 @@ const cartRoutes = require('./routes/cartRoutes');
 const productRoutes = require('./routes/productRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-// const db = require('./db/queries');
 const initializePassport = require('./config/passport');
 
 
