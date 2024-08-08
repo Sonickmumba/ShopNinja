@@ -1,4 +1,5 @@
-const pool = require("../config/db");
+// const pool = require("../config/db");
+const pool = require('..//models/database')
 
 const createOrder = async (user_id, total, status) => {
   const result = await pool.query(
@@ -44,6 +45,7 @@ const getOrdersByUser = async (user_id) => {
       'SELECT * FROM orders WHERE user_id = $1',
       [user_id]
     );
+    console.log(result.rows);
     return result.rows;
   } catch (error) {
     console.error('Error fetching orders by user:', error);

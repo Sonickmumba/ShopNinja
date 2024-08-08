@@ -24,6 +24,7 @@ const getOrders = async (req, res) => {
     }
 
     const user_id = req.user.id;
+    console.log('User ID:', user_id);
     const orders = await orderQueries.getOrdersByUser(user_id);
     res.status(200).json(orders);
   } catch (error) {
