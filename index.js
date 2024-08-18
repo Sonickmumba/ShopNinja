@@ -36,6 +36,7 @@ app.use(
   })
 );
 
+//for securing different HTTP headers
 app.use(helmet());
 
 // mount passport and session
