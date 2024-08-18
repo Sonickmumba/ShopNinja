@@ -32,9 +32,11 @@ app.use(
     secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, secure: false },
+    cookie: { httpOnly: true, secure: false }, // helps mitigate the risk of client-side script accessing the protected cookie.
   })
 );
+
+app.use(helmet());
 
 // mount passport and session
 app.use(passport.initialize());
