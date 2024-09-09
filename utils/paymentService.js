@@ -1,4 +1,4 @@
-// Add code for payments h
+// Add code for payments
 
 const processPayment = async (payment_details) => {
   // Mock payment processing logic
