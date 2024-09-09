@@ -1,4 +1,4 @@
-// Add code for pa
+// Add code for 
 
 const processPayment = async (payment_details) => {
   // Mock payment processing logic
