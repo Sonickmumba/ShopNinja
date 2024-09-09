@@ -1,6 +1,3 @@
-// Add code for payments here.
-
-// paymentService.js
 
 const processPayment = async (payment_details) => {
   // Mock payment processing logic
