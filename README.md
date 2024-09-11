@@ -212,7 +212,7 @@ Example:
 
 - GitHub: [@githubhandle](https://github.com/sonickmumba)
 - Twitter: [@twitterhandle](https://twitter.com/sonickmumba)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/sonickmumba)
 
 👤 **Author2**
 
