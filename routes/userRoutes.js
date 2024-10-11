@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/userController');
 const passport = require('passport');
+// const jwt = require('jsonwebtoken');
 
 const db = require('../db/queries');
 
@@ -212,6 +213,9 @@ router.delete('/users/:id', userController.deleteUser);
 router.post('/login', passport.authenticate('local', {
   failureRedirect: '/api/login',
 }), (req, res) => {
+  // // Generate a JWT token
+  // const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  // res.json({ token }); // Return the token in the response
   res.redirect('/api/users'); // Add the appropriate route here for redirect to home page
 });
 
