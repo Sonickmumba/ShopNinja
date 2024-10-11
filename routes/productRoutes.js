@@ -20,9 +20,15 @@ const router = express.Router();
  *               name:
  *                 type: string
  *                 example: 'Laptop'
+ *               description:
+ *                 type: string
+ *                 example: 'Apple macbook pro'
  *               price:
  *                 type: number
  *                 example: 999.99
+ *               stock:
+ *                 type: number
+ *                 example: 100
  *               category:
  *                 type: string
  *                 example: 'Electronics'
