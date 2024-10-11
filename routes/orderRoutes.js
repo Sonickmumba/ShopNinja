@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 
 const orderController = require('../controllers/orderController');
+// const verifyToken = require('../utils/jwtMiddleware'); // Adjust the path to your JWT middleware
 
 const router = express.Router();
 
