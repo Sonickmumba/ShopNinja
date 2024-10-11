@@ -63,11 +63,11 @@ For more information on the importance of a professional README for your reposit
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 [ShopNinga] <a name="about-project"></a>
 
 > Describe your project in 1 or 2 sentences.
 
-**[your_project__name]** is a...
+**[ShopNinja]** is a...
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -210,9 +210,9 @@ Example:
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/sonickmumba)
+- Twitter: [@twitterhandle](https://twitter.com/sonickmumba)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/sonickmumba)
 
 👤 **Author2**
 
