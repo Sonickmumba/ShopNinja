@@ -16,7 +16,7 @@ const getCartegories = async () => {
 
 
 
-module.default = {
+module.exports = {
   createCartegory,
   getCartegories,
 }
