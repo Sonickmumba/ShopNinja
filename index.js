@@ -14,6 +14,7 @@ const cartRoutes = require("./routes/cartRoutes");
 const productRoutes = require("./routes/productRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const cartgoryRoutes = require("./routes/cartgoryRoutes");
 const initializePassport = require("./config/passport");
 
 const app = express();
@@ -54,6 +55,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/cart", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cartegories", cartgoryRoutes);
 
 app.get("/test", (req, res) => {
   if (req.isAuthenticated()) {
