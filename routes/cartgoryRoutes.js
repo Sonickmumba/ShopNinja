@@ -7,7 +7,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /:
+ * /api/cartegories:
  *   get:
  *     summary: Get all categories
  *     description: Retrieve a list of all categories.
@@ -41,7 +41,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /:
+ * /api/cartegories:
  *   post:
  *     summary: Create a new category
  *     description: Adds a new category.
