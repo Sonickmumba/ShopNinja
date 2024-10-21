@@ -9,7 +9,6 @@ const createCartegory = async (name, description) => {
 };
 
 const getCartegories = async () => {
-  console.log('sonick')
   const respo = await pool.query('SELECT * FROM categories ORDER BY id ASC');
   return respo.rows;
 }
