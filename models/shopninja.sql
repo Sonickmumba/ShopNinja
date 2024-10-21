@@ -43,9 +43,11 @@ CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
+    image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE product_categories (
     product_id INT REFERENCES products(id),
@@ -106,6 +108,187 @@ CREATE TABLE cart_items (
 
 
 queries:
+
+INSERT INTO users (name, email, password) 
+VALUES ('John Doe', 'john@example.com', 'securepassword123');
+
+INSERT INTO users (name, email, password) 
+VALUES ('Jane Smith', 'jane@example.com', 'strongpassword456');
+
+INSERT INTO users (name, email, password) 
+VALUES ('Mike Johnson', 'mike@example.com', 'hashedpassword789');
+
+INSERT INTO users (name, email, password) 
+VALUES ('Sarah Brown', 'sarah@example.com', 'encryptedpassword321');
+
+INSERT INTO users (name, email, password) 
+VALUES ('Chris Lee', 'chris@example.com', 'randompassword987');
+
+
+INSERT INTO products (name, description, price, stock) 
+VALUES ('Laptop', 'High-performance laptop', 999.99, 10);
+
+INSERT INTO products (name, description, price, stock) 
+VALUES ('Smartphone', 'Latest model smartphone with 128GB storage', 699.99, 50);
+
+INSERT INTO products (name, description, price, stock) 
+VALUES ('Headphones', 'Noise-canceling wireless headphones', 199.99, 30);
+
+INSERT INTO products (name, description, price, stock) 
+VALUES ('Smartwatch', 'Wearable fitness tracker with heart rate monitor', 149.99, 20);
+
+INSERT INTO products (name, description, price, stock) 
+VALUES ('Tablet', '10-inch tablet with 64GB storage', 299.99, 15);
+
+INSERT INTO orders (user_id, total, status) 
+VALUES (1, 1699.98, 'pending');
+
+INSERT INTO orders (user_id, total, status) 
+VALUES (2, 899.99, 'processing');
+
+INSERT INTO orders (user_id, total, status) 
+VALUES (3, 399.99, 'shipped');
+
+INSERT INTO orders (user_id, total, status) 
+VALUES (4, 599.99, 'completed');
+
+INSERT INTO orders (user_id, total, status) 
+VALUES (5, 149.99, 'pending');
+
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES (1, 1, 1, 999.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES (1, 2, 1, 699.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES (2, 3, 2, 199.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES (3, 4, 1, 149.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES (4, 5, 1, 299.99);
+
+
+INSERT INTO categories (name, description, image_url) 
+VALUES ('Electronics', 'Devices and gadgets', 'https://example.com/images/electronics.jpg');
+
+INSERT INTO categories (name, description, image_url) 
+VALUES ('Home Appliances', 'Household electronic appliances', 'https://example.com/images/appliances.jpg');
+
+INSERT INTO categories (name, description, image_url) 
+VALUES ('Sports', 'Sports equipment and accessories', 'https://example.com/images/sports.jpg');
+
+INSERT INTO categories (name, description, image_url) 
+VALUES ('Fashion', 'Clothing and accessories', 'https://example.com/images/fashion.jpg');
+
+INSERT INTO categories (name, description, image_url) 
+VALUES ('Books', 'Wide range of books and eBooks', 'https://example.com/images/books.jpg');
+
+INSERT INTO product_categories (product_id, category_id) 
+VALUES (1, 1);
+
+INSERT INTO product_categories (product_id, category_id) 
+VALUES (2, 1);
+
+INSERT INTO product_categories (product_id, category_id) 
+VALUES (3, 3);
+
+INSERT INTO product_categories (product_id, category_id) 
+VALUES (4, 4);
+
+INSERT INTO product_categories (product_id, category_id) 
+VALUES (5, 5);
+
+
+INSERT INTO reviews (product_id, user_id, rating, comment) 
+VALUES (1, 1, 5, 'Excellent product! Highly recommend.');
+
+INSERT INTO reviews (product_id, user_id, rating, comment) 
+VALUES (2, 2, 4, 'Good value for the price.');
+
+INSERT INTO reviews (product_id, user_id, rating, comment) 
+VALUES (3, 3, 3, 'Decent but could be better.');
+
+INSERT INTO reviews (product_id, user_id, rating, comment) 
+VALUES (4, 4, 5, 'Love this product! Works great.');
+
+INSERT INTO reviews (product_id, user_id, rating, comment) 
+VALUES (5, 5, 2, 'Not satisfied with the quality.');
+
+
+INSERT INTO addresses (user_id, address_line1, address_line2, city, state, postal_code, country) 
+VALUES (1, '123 Main St', 'Apt 4B', 'New York', 'NY', '10001', 'USA');
+
+INSERT INTO addresses (user_id, address_line1, address_line2, city, state, postal_code, country) 
+VALUES (2, '456 Oak St', NULL, 'San Francisco', 'CA', '94103', 'USA');
+
+INSERT INTO addresses (user_id, address_line1, address_line2, city, state, postal_code, country) 
+VALUES (3, '789 Pine St', 'Suite 100', 'Chicago', 'IL', '60605', 'USA');
+
+INSERT INTO addresses (user_id, address_line1, address_line2, city, state, postal_code, country) 
+VALUES (4, '321 Maple St', NULL, 'Austin', 'TX', '73301', 'USA');
+
+INSERT INTO addresses (user_id, address_line1, address_line2, city, state, postal_code, country) 
+VALUES (5, '654 Cedar St', 'Floor 2', 'Los Angeles', 'CA', '90001', 'USA');
+
+
+INSERT INTO payments (order_id, amount, method, status) 
+VALUES (1, 1699.98, 'credit card', 'completed');
+
+INSERT INTO payments (order_id, amount, method, status) 
+VALUES (2, 899.99, 'paypal', 'pending');
+
+INSERT INTO payments (order_id, amount, method, status) 
+VALUES (3, 399.99, 'debit card', 'completed');
+
+INSERT INTO payments (order_id, amount, method, status) 
+VALUES (4, 599.99, 'credit card', 'completed');
+
+INSERT INTO payments (order_id, amount, method, status) 
+VALUES (5, 149.99, 'paypal', 'pending');
+
+
+INSERT INTO carts (user_id) 
+VALUES (1);
+
+INSERT INTO carts (user_id) 
+VALUES (2);
+
+INSERT INTO carts (user_id) 
+VALUES (3);
+
+INSERT INTO carts (user_id) 
+VALUES (4);
+
+INSERT INTO carts (user_id) 
+VALUES (5);
+
+
+INSERT INTO cart_items (cart_id, product_id, quantity, price) 
+VALUES (1, 1, 1, 999.99);
+
+INSERT INTO cart_items (cart_id, product_id, quantity, price) 
+VALUES (1, 2, 1, 699.99);
+
+INSERT INTO cart_items (cart_id, product_id, quantity, price) 
+VALUES (2, 3, 2, 199.99);
+
+INSERT INTO cart_items (cart_id, product_id, quantity, price) 
+VALUES (3, 4, 1, 149.99);
+
+INSERT INTO cart_items (cart_id, product_id, quantity, price) 
+VALUES (4, 5, 1, 299.99);
+
+
+
+
+
+
+
+
+
 
 -- Sample categories
 INSERT INTO categories (name) VALUES ('Electronics');
