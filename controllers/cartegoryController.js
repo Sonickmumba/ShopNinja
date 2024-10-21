@@ -11,9 +11,7 @@ const createCartegory = async (req, res) => {
 };
 
 const getCartegories = async (req, res) => {
-  console.log('trying to get cartegories11')
   try {
-    console.log('mumba')
     const cartegories = await db.getCartegories();
     console.log('trying to get cartegories')
     res.status(200).json(cartegories);
