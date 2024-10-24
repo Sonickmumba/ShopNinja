@@ -42,7 +42,7 @@ const HomePage = () => {
           // onChange={handleSearch}
         />
         <ul className="features">
-          <li><a className="anchor">New Arrivals</a></li>
+          <li><a>New Arrivals</a></li>
           <li><a>Summer</a></li>
           <li><a>Deal & Promotions</a></li>
           <li><a>Sell on ShopNinja</a></li>
