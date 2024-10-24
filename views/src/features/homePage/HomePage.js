@@ -36,7 +36,7 @@ const HomePage = () => {
       <div className="search-feature-container">
         <input
           type="text"
-          className="mobile-search-bar"
+          className="search-bar"
           placeholder="What are you looking for ?"
           // value={searchTerm}
           // onChange={handleSearch}
