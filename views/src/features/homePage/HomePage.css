@@ -60,6 +60,11 @@
   background-color: #0b79bf
 }
 
+.search-feature-container input {
+  width: 60%;
+  margin:0 auto;
+}
+
 .features {
   display: flex;
 }
