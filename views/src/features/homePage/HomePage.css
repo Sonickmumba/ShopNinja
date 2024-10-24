@@ -87,11 +87,19 @@
   border: none;
   background-color: #f8f9fa;
   padding: 0.5rem;
+  list-style-type: none;
 }
 
 .features li a {
   text-decoration: none;
+  color: inherit; /* Inherit the text color from parent */
+  cursor: pointer; /* Optional: Make it clear that these are clickable */
 }
+
+.features li a:hover {
+  color: #ff9800; /* Optional: Add a hover color */
+}
+
 
 
 
