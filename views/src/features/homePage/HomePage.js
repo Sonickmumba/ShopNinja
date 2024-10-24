@@ -41,14 +41,15 @@ const HomePage = () => {
           // value={searchTerm}
           // onChange={handleSearch}
         />
-        <div className="features">
-          <p>New Arrivals</p>
-          <p>Summer</p>
-          <p>Deal & Promotions</p>
-          <p>Christmas</p>
-          <p>Valentines</p>
-          <p>Sale</p>
-        </div>
+        <ul className="features">
+          <li><a className="anchor">New Arrivals</a></li>
+          <li><a>Summer</a></li>
+          <li><a>Deal & Promotions</a></li>
+          <li><a>Sell on ShopNinja</a></li>
+          <li><a>Christmas</a></li>
+          <li><a>Valentines</a></li>
+          <li><a>Sales</a></li>
+        </ul>
       </div>
     </div>
   );
