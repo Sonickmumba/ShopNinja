@@ -1,22 +1,75 @@
-/* General layout for mobile */
-.mobile-homepage-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  /* padding: 0 1rem; */
-  max-width: 100%;
+.homepage-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
-/* Navigation Bar Styling */
-.mobile-navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #333;
-  color: white;
-  /* width: 100%; */
+  background-color: #fff;
+  padding: 10px 20px;
 }
+
+.logo {
+  font-size: 2.5em;
+  color: #3d3a39;
+  font-weight: bolder;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.navigation li {
+  padding: 10px 15px;
+}
+
+.navigation li a {
+  color: #a8a9a3;
+  text-decoration: none;
+  /* font-weight: bold; */
+}
+
+.navigation li a:hover {
+  color: #ff9800;
+  transition: color 0.3s ease;
+}
+
+.line {
+  height: 20px;
+  width: 1px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.navbar-icons {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-feature-container {
+  display: flex;flex-direction: column;
+  align-items: center;
+  background-color: #0b79bf
+}
+
+.features {
+  display: flex;
+}
+
+
+
+/* General layout for mobile */
+
+/* Navigation Bar Styling */
+
 
 .mobile-navbar-menu {
   font-size: 1.5rem;
@@ -118,4 +171,4 @@
 
 .mobile-product-info button:hover {
   background-color: #0056b3;
-}
+} 
