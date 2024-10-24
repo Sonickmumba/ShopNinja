@@ -172,19 +172,19 @@ VALUES (4, 5, 1, 299.99);
 
 
 INSERT INTO categories (name, description, image_url) 
-VALUES ('Electronics', 'Devices and gadgets', 'https://example.com/images/electronics.jpg');
+VALUES ('Electronics', 'Devices and gadgets', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D');
 
 INSERT INTO categories (name, description, image_url) 
-VALUES ('Home Appliances', 'Household electronic appliances', 'https://example.com/images/appliances.jpg');
+VALUES ('Home Appliances', 'Household electronic appliances', 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D');
 
 INSERT INTO categories (name, description, image_url) 
-VALUES ('Sports', 'Sports equipment and accessories', 'https://example.com/images/sports.jpg');
+VALUES ('Sports', 'Sports equipment and accessories', 'https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D');
 
 INSERT INTO categories (name, description, image_url) 
-VALUES ('Fashion', 'Clothing and accessories', 'https://example.com/images/fashion.jpg');
+VALUES ('Fashion', 'Clothing and accessories', 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D');
 
 INSERT INTO categories (name, description, image_url) 
-VALUES ('Books', 'Wide range of books and eBooks', 'https://example.com/images/books.jpg');
+VALUES ('Books', 'Wide range of books and eBooks', 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D');
 
 INSERT INTO product_categories (product_id, category_id) 
 VALUES (1, 1);
