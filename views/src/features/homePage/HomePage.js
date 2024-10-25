@@ -6,6 +6,22 @@ import "./HomePage.css";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/cartegories");
+      setCategories(response.data);
+    } catch (error) {
+      throw new Error("Error fetching products", error);
+      
+    }
+  }
+
+  useEffect(()=>{
+    fetchCategories();
+  }, [])
+
 
   return (
     <div className="homepage-container">
@@ -51,6 +67,21 @@ const HomePage = () => {
           <li><a>Sales</a></li>
         </ul>
       </div>
+
+      <aside className="mobile-category-menu">
+          <h3>Shop by Caregory</h3>
+          <ul>
+            {categories.map((category) => (
+              <li
+                key={category.id}
+                // onClick={() => setSelectedCategory(category.name)}
+              >
+                {category.name}
+              </li>
+            ))}
+            {/* <li onClick={() => setSelectedCategory("")}>All Products</li> */}
+          </ul>
+        </aside>
     </div>
   );
 };
@@ -127,21 +158,21 @@ const HomePage = () => {
 
 //       {/* Collapsible Menu for Categories */}
 //       {menuOpen && (
-//         <aside className="mobile-category-menu">
-//           <div className="aside-title">ShopNinja</div>
-//           <h3>Categories</h3>
-//           <ul>
-//             {categories.map((category) => (
-//               <li
-//                 key={category.id}
-//                 onClick={() => setSelectedCategory(category.name)}
-//               >
-//                 {category.name}
-//               </li>
-//             ))}
-//             <li onClick={() => setSelectedCategory("")}>All Products</li>
-//           </ul>
-//         </aside>
+        // <aside className="mobile-category-menu">
+        //   <div className="aside-title">ShopNinja</div>
+        //   <h3>Categories</h3>
+        //   <ul>
+        //     {categories.map((category) => (
+        //       <li
+        //         key={category.id}
+        //         onClick={() => setSelectedCategory(category.name)}
+        //       >
+        //         {category.name}
+        //       </li>
+        //     ))}
+        //     <li onClick={() => setSelectedCategory("")}>All Products</li>
+        //   </ul>
+        // </aside>
 //       )}
 
 //       {/* Featured Products */}
