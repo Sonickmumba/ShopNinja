@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require('helmet');
+const path = require('path');
 require("dotenv").config();
 
 const swaggerDocs = require("./utils/swagger");
@@ -13,6 +14,7 @@ const cartRoutes = require("./routes/cartRoutes");
 const productRoutes = require("./routes/productRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const cartgoryRoutes = require("./routes/cartgoryRoutes");
 const initializePassport = require("./config/passport");
 
 const app = express();
@@ -40,6 +42,10 @@ app.use(
 //for securing different HTTP headers
 app.use(helmet());
 
+//static files
+const buildPath = path.join(__dirname, 'views/build');
+app.use(express.static(buildPath));
+
 // mount passport and session
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,6 +55,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/cart", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cartegories", cartgoryRoutes);
 
 app.get("/test", (req, res) => {
   if (req.isAuthenticated()) {
@@ -58,11 +65,16 @@ app.get("/test", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.json({
-    info: "Node.js, Express, and Postgres API Template by Sonick Mumba",
-  });
-});
+// render static files from the build folder from view react folder
+app.get('/', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+})
+
+// app.get("/", (req, res) => {
+//   res.json({
+//     info: "Node.js, Express, and Postgres API Template by Sonick Mumba",
+//   });
+// });
 
 // route for user registration
 // app.post('/register', db.registerUser);
