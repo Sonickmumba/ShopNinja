@@ -1,14 +1,16 @@
 import React from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
-import HomePage from './features/homePage/HomePage';
+// import HomePage from './features/homePage/HomePage';
+import LoginPage from './features/login/LoginPage';
 // import './App.css';
 
 function App() {
   return (
     
     <div className="App">
-      <HomePage />
+      <LoginPage />
+      {/* <HomePage /> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
