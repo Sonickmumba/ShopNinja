@@ -1,6 +1,5 @@
 const express = require("express");
-// import generateToken from '../utils/jwtMiddleware';
-// import authenticateToken from '../utils/jwtMiddleware';
+const { body, validationResult } = require("express-validator");
 const jwtMiddleware = require("../utils/jwtMiddleware");
 const userController = require("../controllers/userController");
 const passport = require("passport");
@@ -112,7 +111,16 @@ router.get("/users/:id", userController.getUserById);
  *       400:
  *         description: Invalid input
  */
-router.post("/register", db.registerUser);
+router.post(
+  "/register",
+  [
+    body("email").isEmail().withMessage("Enter a valid email"),
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long"),
+  ],
+  db.registerUser
+);
 
 /**
  * @swagger
@@ -231,7 +239,7 @@ router.post(
     });
 
     // res.json({ token, id: req.user.id }); // Return the token in the response
-    res.json({ message: 'Login successful', token, id: req.user.id})
+    res.json({ message: "Login successful", token, id: req.user.id });
   }
 );
 
