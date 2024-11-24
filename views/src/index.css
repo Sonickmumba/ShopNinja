@@ -14,3 +14,16 @@ code {
     monospace;
 }
 
+:root {
+  --primary-color: #4267B2; /* Facebook blue */
+  --secondary-color: #1DA1F2; /* X (Twitter) blue */
+  --accent-color: #DB4437; /* Google red */
+  --line-color: gray; /* Line color */
+  --text-color: #333; /* General text color */
+  --background-color: #f9f9f9; /* Page background */
+  --red-color: #f7788b;
+  --blue-color: #87a5e0;
+  --white-color: #f4f5fb;
+  --gray-color: #8f8f8f;
+  --black-color: #373737;
+}
