@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import HomePage from './features/homePage/HomePage';
