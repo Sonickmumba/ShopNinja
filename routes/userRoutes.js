@@ -34,7 +34,7 @@ const router = express.Router();
  *                     type: string
  *                     example: 'john.doe@example.com'
  */
-router.get("/users", jwtMiddleware.authenticateToken, userController.getUsers);
+router.get("/users", userController.getUsers);
 
 /**
  * @swagger
@@ -239,7 +239,7 @@ router.post(
     });
 
     // res.json({ token, id: req.user.id }); // Return the token in the response
-    res.json({ message: "Login successful", token, id: req.user.id });
+    res.json({ message: "Login successful", token, user: req.user });
   }
 );
 
