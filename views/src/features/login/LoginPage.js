@@ -21,9 +21,6 @@ function LoginPage() {
         body: JSON.stringify({ email, password })
       });
 
-      console.log(response)
-
-      // Redirect to the home page
       if (!response.ok) {
         throw new Error("Invalid credentials");
       }
@@ -105,7 +102,6 @@ function LoginPage() {
           <div>Or login with:</div>
           <div className="line"></div>
         </div>
-        {/* <p className="social-text">Or login with:</p> */}
         <div className="login-go-fa-x">
           <button onClick={handleGoogleLogin} className="social-button google">
             <FcGoogle />
