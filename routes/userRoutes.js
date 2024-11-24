@@ -225,7 +225,7 @@ router.post(
     // Optionally set the token in an HTTP-only cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "development",
+      secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
       maxAge: 3600000, // 1 hour
     });
