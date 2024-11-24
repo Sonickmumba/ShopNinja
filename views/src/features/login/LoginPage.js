@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import Signup from "./Signup";
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./LoginPage.css";
 
-function LoginPage( {handleSignup}) {
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,10 +52,11 @@ function LoginPage( {handleSignup}) {
     // Add Twitter/X OAuth logic here
   };
 
-  // const handleSignup = (e) => {
-  //   e.preventDefault();
-  //   console.log('Go to sign up');
-  // }
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log('Go to sign up');
+    navigate('/signup')
+  }
 
   return (
     <div className="container">
