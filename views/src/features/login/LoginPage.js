@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Signup from "./Signup";
+// import Signup from "./Signup";
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
