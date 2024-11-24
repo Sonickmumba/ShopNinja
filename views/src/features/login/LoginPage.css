@@ -63,7 +63,7 @@
 
 .line {
   border-bottom: 2px solid gray;
-  width: 135px;
+  width: 120px;
   height: 1px;
   background-color: gray;
   margin-bottom: 0.5rem;
@@ -79,27 +79,41 @@
 }
 
 .social-button {
-  width: 100%;
-  padding: 0.7rem;
-  font-size: 1rem;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* No background */
+  border: none; /* Remove default button styling */
   cursor: pointer;
+  padding: 0.5rem; /* Add a bit of padding for clickability */
+  transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
 /* Specific styles for each social button */
-.social-button.google {
-  background-color: #4285F4;
+/* Icon size and color */
+.social-button svg {
+  font-size: 3rem; /* Increase the size of the icon */
+  color: #000; /* Default color for the icons */
 }
 
-.social-button.facebook {
-  background-color: #4267B2;
+/* Hover effect */
+.social-button:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
 }
 
-.social-button.x {
-  background-color: #1DA1F2;
+/* Google-specific icon */
+.social-button.google svg {
+  color: #DB4437; /* Google red */
+}
+
+/* Facebook-specific icon */
+.social-button.facebook svg {
+  color: #4267B2; /* Facebook blue */
+}
+
+/* X-specific icon */
+.social-button.x svg {
+  color: #1DA1F2; /* X (Twitter) blue */
 }
 
 .social-button:hover {
