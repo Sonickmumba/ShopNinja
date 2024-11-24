@@ -1,16 +1,43 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import "./LoginPage.css"; // Import the CSS file
+import "./LoginPage.css";
 
 function LoginPage() {
-  const [userEmail, setUserEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login attempted with:", { userEmail, password });
+    console.log("Login attempted with:", { email, password });
     // Add your login logic here
+    try {
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      console.log(response)
+
+      // Redirect to the home page
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
+
+      const data = await response.json();
+      console.log('Login successfully', data);
+
+      // Save token (optional)
+      localStorage.setItem('token', data.token);
+
+      navigate('/home');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -39,8 +66,8 @@ function LoginPage() {
           <input
             type="text"
             id="userEmail"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="input"
           />
         </div>
@@ -57,12 +84,12 @@ function LoginPage() {
           />
         </div>
 
-        <div class="remember-forgot">
-          <label class="remember-me">
+        <div className="remember-forgot">
+          <label className="remember-me">
             <input type="checkbox" />
             Remember me?
           </label>
-          <a href="sonick" class="forgot-password">
+          <a href="sonick" className="forgot-password">
             Forgot password
           </a>
         </div>
