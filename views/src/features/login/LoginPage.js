@@ -69,22 +69,10 @@ function LoginPage() {
         </div>
         {/* <p className="social-text">Or login with:</p> */}
         <div className="login-go-fa-x">
-          <button><FcGoogle /></button>
-          <button><FaFacebook /></button>
-          <button><FaTwitter /></button>
+          <button onClick={handleGoogleLogin} className="social-button google"><FcGoogle /></button>
+          <button onClick={handleFacebookLogin} className="social-button facebook"><FaFacebook /></button>
+          <button onClick={handleXLogin} className="social-button x"><FaTwitter /></button>
         </div>
-        <button onClick={handleGoogleLogin} className="social-button google">
-          <FcGoogle />
-        </button>
-        <button
-          onClick={handleFacebookLogin}
-          className="social-button facebook"
-        >
-          <FaFacebook />
-        </button>
-        <button onClick={handleXLogin} className="social-button x">
-          <FaTwitter />
-        </button>
       </div>
     </div>
   );
