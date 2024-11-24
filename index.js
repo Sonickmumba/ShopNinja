@@ -61,7 +61,7 @@ app.use("/api/cart", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/cartegories", cartgoryRoutes);
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.json({ message: "Authenticated", user: req.user });
   } else {
@@ -79,9 +79,6 @@ app.get("/", (req, res) => {
 //     info: "Node.js, Express, and Postgres API Template by Sonick Mumba",
 //   });
 // });
-
-// route for user registration
-// app.post('/register', db.registerUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
