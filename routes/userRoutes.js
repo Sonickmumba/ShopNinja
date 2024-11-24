@@ -1,12 +1,13 @@
-const express = require('express');
-const userController = require('../controllers/userController');
-const passport = require('passport');
-// const jwt = require('jsonwebtoken');
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+const jwtMiddleware = require("../utils/jwtMiddleware");
+const userController = require("../controllers/userController");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
-const db = require('../db/queries');
+const db = require("../db/queries");
 
 const router = express.Router();
-
 
 /**
  * @swagger
@@ -33,7 +34,7 @@ const router = express.Router();
  *                     type: string
  *                     example: 'john.doe@example.com'
  */
-router.get('/users', userController.getUsers);
+router.get("/users", userController.getUsers);
 
 /**
  * @swagger
@@ -67,7 +68,7 @@ router.get('/users', userController.getUsers);
  *       404:
  *         description: User not found
  */
-router.get('/users/:id', userController.getUserById);
+router.get("/users/:id", userController.getUserById);
 
 /**
  * @swagger
@@ -110,7 +111,16 @@ router.get('/users/:id', userController.getUserById);
  *       400:
  *         description: Invalid input
  */
-router.post('/register', db.registerUser);
+router.post(
+  "/register",
+  [
+    body("email").isEmail().withMessage("Enter a valid email"),
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long"),
+  ],
+  db.registerUser
+);
 
 /**
  * @swagger
@@ -162,7 +172,7 @@ router.post('/register', db.registerUser);
  *       404:
  *         description: User not found
  */
-router.put('/users/:id', userController.updateUser);
+router.put("/users/:id", userController.updateUser);
 
 /**
  * @swagger
@@ -182,7 +192,7 @@ router.put('/users/:id', userController.updateUser);
  *       404:
  *         description: User not found
  */
-router.delete('/users/:id', userController.deleteUser);
+router.delete("/users/:id", userController.deleteUser);
 
 /**
  * @swagger
@@ -210,14 +220,28 @@ router.delete('/users/:id', userController.deleteUser);
  */
 
 // Authenticated user routes
-router.post('/login', passport.authenticate('local', {
-  failureRedirect: '/api/login',
-}), (req, res) => {
-  // // Generate a JWT token
-  // const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  // res.json({ token }); // Return the token in the response
-  res.redirect('/api/users'); // Add the appropriate route here for redirect to home page
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/api/login",
+  }),
+  (req, res) => {
+    // // Generate a JWT token
+    const token = jwtMiddleware.generateToken(req.user);
+    console.log(token);
+
+    // Optionally set the token in an HTTP-only cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 3600000, // 1 hour
+    });
+
+    // res.json({ token, id: req.user.id }); // Return the token in the response
+    res.json({ message: "Login successful", token, user: req.user });
+  }
+);
 
 /**
  * @swagger
@@ -234,9 +258,9 @@ router.post('/login', passport.authenticate('local', {
  *               example: 'Login page'
  */
 
-router.get('/login', (req, res) => {
-  res.send('Login page'); // Replace with actual HTML or a template if needed
-});
+// router.get('/login', (req, res) => {
+//   res.send('Login pageeee');
+// });
 
 /**
  * @swagger
@@ -250,12 +274,12 @@ router.get('/login', (req, res) => {
  *         description: Logout failed
  */
 
-router.get('/logout', (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) {
-      return res.status(500).json({ message: 'Logout failed', error: err });
+      return res.status(500).json({ message: "Logout failed", error: err });
     }
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 

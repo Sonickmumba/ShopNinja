@@ -1,60 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import HomePage from './features/homePage/HomePage';
-// import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './features/login/LoginPage';
+import './App.css';
 
 function App() {
+  const [signup, setSignup] = useState(false);
+  const handleSignup = (e) => {
+    e.preventDefault();
+    setSignup(true);
+  }
+
   return (
-    
-    <div className="App">
-      <HomePage />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header> */}
-    </div>
+    // <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={ !signup ? <LoginPage handleSignup={handleSignup}/> : <HomePage />} />
+          <Route path="/home" element={<HomePage />}/>
+        </Routes>
+      </Router>
+    // </div>
   );
 }
 

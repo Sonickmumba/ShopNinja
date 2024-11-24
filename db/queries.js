@@ -1,14 +1,15 @@
 // const pool = require('../config/db');
-const pool = require('..//models/database')
-const bcrypt = require('bcrypt');
+const pool = require("..//models/database");
+const bcrypt = require("bcrypt");
+const { validationResult } = require('express-validator');
 
 const getUsers = async () => {
-  const results = await pool.query('SELECT * FROM users order by id asc');
+  const results = await pool.query("SELECT * FROM users order by id asc");
   return results.rows;
 };
 
 const getUserById = async (id) => {
-  const results = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+  const results = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
   return results.rows[0];
 };
 
@@ -22,27 +23,38 @@ const getUserById = async (id) => {
 
 const updateUser = async (id, name, email) => {
   const results = await pool.query(
-    'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
+    "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
     [name, email, id]
   );
   return results.rows[0];
 };
 
 const deleteUser = async (id) => {
-  const results = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *', [id]);
+  const results = await pool.query(
+    "DELETE FROM users WHERE id = $1 RETURNING *",
+    [id]
+  );
   return results.rows[0];
 };
 
 const registerUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, email, password } = req.body;
 
   try {
     // Check if user already exists
-    const usersResult = await pool.query('SELECT * FROM users WHERE name = $1 OR email = $2', [name, email]);
+    const usersResult = await pool.query(
+      "SELECT * FROM users WHERE name = $1 OR email = $2",
+      [name, email]
+    );
     const users = usersResult.rows;
 
     if (users.length > 0) {
-      return res.status(409).send('User already exists');
+      return res.status(409).send("User already exists");
     }
 
     // Hash the password
@@ -50,11 +62,36 @@ const registerUser = async (req, res) => {
 
     // Insert the new user into the database
     const result = await pool.query(
-      'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id',
+      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id",
       [name, email, hashedPassword]
     );
 
-    res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
+
+    // added below
+    
+    // Auto-login after signup
+    req.login(result.rows[0], (err) => {
+      if (err) {
+        console.error('Error logging in user after signup:', err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+
+      res.status(201).json({
+        message: 'Signup successful, user logged in',
+        user: result.rows[0]
+      });
+    });
+
+    // added above
+
+
+
+
+
+
+
+
+    // res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
   } catch (error) {
     res.status(500).send(error.message);
   }

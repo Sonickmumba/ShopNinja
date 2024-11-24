@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const helmet = require('helmet');
-const path = require('path');
+const helmet = require("helmet");
+const path = require("path");
 require("dotenv").config();
 
 const swaggerDocs = require("./utils/swagger");
@@ -18,7 +18,7 @@ const cartgoryRoutes = require("./routes/cartgoryRoutes");
 const initializePassport = require("./config/passport");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Swagger setup
 swaggerDocs(app, port);
@@ -35,7 +35,11 @@ app.use(
     secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, secure: false }, // helps mitigate the risk of client-side script accessing the protected cookie.
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "development",
+      maxAge: 1000 * 60 * 60,
+    }, // helps mitigate the risk of client-side script accessing the protected cookie.
   })
 );
 
@@ -43,7 +47,7 @@ app.use(
 app.use(helmet());
 
 //static files
-const buildPath = path.join(__dirname, 'views/build');
+const buildPath = path.join(__dirname, "views/build");
 app.use(express.static(buildPath));
 
 // mount passport and session
@@ -66,9 +70,9 @@ app.get("/test", (req, res) => {
 });
 
 // render static files from the build folder from view react folder
-app.get('/', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-})
+app.get("/", (req, res) => {
+  res.sendFile(path.join(buildPath, "index.html"));
+});
 
 // app.get("/", (req, res) => {
 //   res.json({
