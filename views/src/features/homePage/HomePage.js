@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Carousel from "../util/Carousel";
-import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import Carousel from "../util/Carousel";
+// import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
 import "./HomePage.css";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  // const [products, setProducts] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/cartegories");
-      setCategories(response.data);
-    } catch (error) {
-      throw new Error("Error fetching products", error);
+  // const fetchCategories = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:3000/api/cartegories");
+  //     setCategories(response.data);
+  //   } catch (error) {
+  //     throw new Error("Error fetching products", error);
       
-    }
-  }
+  //   }
+  // }
 
-  useEffect(()=>{
-    fetchCategories();
-  }, [])
+  // useEffect(()=>{
+  //   fetchCategories();
+  // }, [])
 
 
   return (
@@ -44,7 +44,7 @@ const HomePage = () => {
             <a href="#account">My Account</a>
           </li>
           <div className="navbar-icons">
-            <FiShoppingCart />
+            {/* <FiShoppingCart /> */}
             {/* <FiUser /> */}
           </div>
         </ul>
@@ -71,15 +71,16 @@ const HomePage = () => {
       <aside className="mobile-category-menu">
           <h3>Shop by Caregory</h3>
           <ul>
-            {categories.map((category) => (
+            {/* {categories.map((category) => (
               <li
                 key={category.id}
                 // onClick={() => setSelectedCategory(category.name)}
               >
                 {category.name}
               </li>
-            ))}
+            ))} */}
             {/* <li onClick={() => setSelectedCategory("")}>All Products</li> */}
+            <li>sonick</li>
           </ul>
         </aside>
     </div>
