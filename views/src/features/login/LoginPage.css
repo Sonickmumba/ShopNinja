@@ -76,12 +76,6 @@
   color: var(--accent-color);
 }
 
-
-
-
-
-
-
 /* Login button */
 .login-button {
   width: 100%;
@@ -171,6 +165,7 @@
 
 .sign-up-option span {
   color: var(--red-color);
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
