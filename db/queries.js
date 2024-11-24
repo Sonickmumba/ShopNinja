@@ -66,7 +66,32 @@ const registerUser = async (req, res) => {
       [name, email, hashedPassword]
     );
 
-    res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
+
+    // added below
+    
+    // Auto-login after signup
+    req.login(result.rows[0], (err) => {
+      if (err) {
+        console.error('Error logging in user after signup:', err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+
+      res.status(201).json({
+        message: 'Signup successful, user logged in',
+        user: result.rows[0]
+      });
+    });
+
+    // added above
+
+
+
+
+
+
+
+
+    // res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
   } catch (error) {
     res.status(500).send(error.message);
   }
