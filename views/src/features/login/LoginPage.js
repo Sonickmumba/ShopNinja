@@ -56,6 +56,17 @@ function LoginPage() {
             className="input"
           />
         </div>
+
+        <div class="remember-forgot">
+          <label class="remember-me">
+            <input type="checkbox" />
+            Remember me?
+          </label>
+          <a href="#" class="forgot-password">
+            Forgot password
+          </a>
+        </div>
+
         <button type="submit" className="login-button">
           Login
         </button>
@@ -69,9 +80,21 @@ function LoginPage() {
         </div>
         {/* <p className="social-text">Or login with:</p> */}
         <div className="login-go-fa-x">
-          <button onClick={handleGoogleLogin} className="social-button google"><FcGoogle /></button>
-          <button onClick={handleFacebookLogin} className="social-button facebook"><FaFacebook /></button>
-          <button onClick={handleXLogin} className="social-button x"><FaTwitter /></button>
+          <button onClick={handleGoogleLogin} className="social-button google">
+            <FcGoogle />
+          </button>
+          <button
+            onClick={handleFacebookLogin}
+            className="social-button facebook"
+          >
+            <FaFacebook />
+          </button>
+          <button onClick={handleXLogin} className="social-button x">
+            <FaTwitter />
+          </button>
+        </div>
+        <div className="sign-up-option">
+          Don't have an account? <span>Sign up</span>
         </div>
       </div>
     </div>
