@@ -4,20 +4,17 @@ import React, { useState } from 'react';
 import HomePage from './features/homePage/HomePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './features/login/LoginPage';
+import Signup from './features/login/Signup';
 import './App.css';
 
 function App() {
-  const [signup, setSignup] = useState(false);
-  const handleSignup = (e) => {
-    e.preventDefault();
-    setSignup(true);
-  }
 
   return (
     // <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={ !signup ? <LoginPage handleSignup={handleSignup}/> : <HomePage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<HomePage />}/>
         </Routes>
       </Router>
