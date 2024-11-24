@@ -39,6 +39,13 @@ module.exports = function(passport) {
     try {
       const response = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
       const user = response.rows[0];
+
+      if (!user) {
+        console.log('User not found during deserialization');
+        return done(null, false);
+      }
+
+      console.log(`User deserialized: ${user.email}`);
       done(null, user);
     } catch (error) {
       done(error);
