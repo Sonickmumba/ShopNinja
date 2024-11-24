@@ -77,6 +77,7 @@ const registerUser = async (req, res) => {
       }
 
       res.status(201).json({
+        success: true,
         message: 'Signup successful, user logged in',
         user: result.rows[0]
       });
