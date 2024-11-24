@@ -62,7 +62,7 @@ function LoginPage() {
             <input type="checkbox" />
             Remember me?
           </label>
-          <a href="#" class="forgot-password">
+          <a href="sonick" class="forgot-password">
             Forgot password
           </a>
         </div>
