@@ -4,7 +4,7 @@ import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./LoginPage.css";
 
-function LoginPage() {
+function LoginPage( {handleSignup}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +26,6 @@ function LoginPage() {
       }
 
       const data = await response.json();
-      console.log('Login successfully', data);
 
       // Save token (optional)
       localStorage.setItem('token', data.token);
@@ -51,6 +50,11 @@ function LoginPage() {
     console.log("X login clicked");
     // Add Twitter/X OAuth logic here
   };
+
+  // const handleSignup = (e) => {
+  //   e.preventDefault();
+  //   console.log('Go to sign up');
+  // }
 
   return (
     <div className="container">
@@ -82,8 +86,8 @@ function LoginPage() {
         </div>
 
         <div className="remember-forgot">
-          <label className="remember-me">
-            <input type="checkbox" />
+          <label htmlFor="remember" className="remember-me">
+            <input type="checkbox" id="remember" />
             Remember me?
           </label>
           <a href="sonick" className="forgot-password">
@@ -117,7 +121,7 @@ function LoginPage() {
           </button>
         </div>
         <div className="sign-up-option">
-          Don't have an account? <span>Sign up</span>
+          Don't have an account? <span onClick={handleSignup}>Sign up</span>
         </div>
       </div>
     </div>
