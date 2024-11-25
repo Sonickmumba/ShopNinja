@@ -63,7 +63,7 @@ function LoginPage() {
       <h2 className="heading">Login</h2>
       <form onSubmit={handleLogin} className="form">
         <div className="input-container">
-          <label htmlFor="username" className="label">
+          <label htmlFor="userEmail" className="label">
             Email
           </label>
           <input
