@@ -235,7 +235,7 @@ router.post(
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
-      maxAge: 3600000, // 1 hour
+      maxAge: 3600000,
     });
 
     // res.json({ token, id: req.user.id }); // Return the token in the response
