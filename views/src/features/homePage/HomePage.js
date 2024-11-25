@@ -2,6 +2,7 @@
 // import axios from "axios";
 // import Carousel from "../util/Carousel";
 // import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
+// import checkAuthStatus from "../../utils/checkAuthStatus";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -18,10 +19,10 @@ const HomePage = () => {
   //   }
   // }
 
-  // useEffect(()=>{
-  //   fetchCategories();
-  // }, [])
 
+  // useEffect(()=>{
+  //   // fetchCategories();
+  // }, [navigate])
 
   return (
     <div className="homepage-container">
