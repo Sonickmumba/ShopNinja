@@ -39,7 +39,7 @@ app.use(
       httpOnly: true,
       secure: process.env.NODE_ENV === "development",
       maxAge: 1000 * 60 * 60,
-    }, // helps mitigate the risk of client-side script accessing the protected cookie.
+    },
   })
 );
 
