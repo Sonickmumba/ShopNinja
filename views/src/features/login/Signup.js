@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-  const [message, setMessage] = useState('');
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,25 +17,42 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Strong password regex
+    const strongPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{8,}$/
+;
+
+    if (!strongPasswordRegex.test(formData.password)) {
+      setMessage(
+        "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3001/api/register', formData);
+      const response = await axios.post(
+        "http://localhost:3001/api/register",
+        formData
+      );
       setMessage(response.data.message);
-      console.log(response)
+      console.log(response);
 
       if (response.data.success) {
-        navigate('/home')
+        navigate("/home");
       }
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Something went wrong');
+      console.log(error.response);
+      setMessage(error.response?.data?.message || "Something went wrong");
     }
   };
-  
+
   return (
     <div className="container">
       <h2 className="heading">Signup</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="input-container">
-        <input
+          <input
             type="name"
             name="name"
             placeholder="Name"
@@ -75,7 +96,7 @@ function Signup() {
 
       {message && <p>{message}</p>}
     </div>
-  )
+  );
 }
 
 export default Signup;
