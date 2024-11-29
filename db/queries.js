@@ -45,6 +45,15 @@ const registerUser = async (req, res) => {
 
   const { name, email, password } = req.body;
 
+  // Strong password validation
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{8,}$/
+;
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      message: 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character',
+    });
+  }
+
   try {
     // Check if user already exists
     const usersResult = await pool.query(
@@ -94,6 +103,7 @@ const registerUser = async (req, res) => {
 
     // res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
   } catch (error) {
+    console.error("Error in user registration:", error);
     res.status(500).send(error.message);
   }
 };
