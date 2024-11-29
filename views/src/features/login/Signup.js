@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -95,6 +95,14 @@ function Signup() {
       </form>
 
       {message && <p>{message}</p>}
+
+      <p>
+        Already have an account?{" "}
+        {/* <a href="/" className="signin-link">
+          Sign in here
+        </a> */}
+        <Link to="/">Sign in here</Link>
+      </p>
     </div>
   );
 }
