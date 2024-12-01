@@ -98,9 +98,6 @@ function Signup() {
 
       <p>
         Already have an account?{" "}
-        {/* <a href="/" className="signin-link">
-          Sign in here
-        </a> */}
         <Link to="/">Sign in here</Link>
       </p>
     </div>
