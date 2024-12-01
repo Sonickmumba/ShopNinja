@@ -40,6 +40,7 @@ function LoginPage() {
   const handleGoogleLogin = () => {
     console.log("Google login clicked");
     // Add Google OAuth logic here
+    window.location.href = 'http://localhost:3001/auth/google';
   };
 
   const handleFacebookLogin = () => {
