@@ -8,6 +8,7 @@ import "./LoginPage.css";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,6 +22,11 @@ function LoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       });
+
+      console.log(response)
+      if (response.statusText === "Not Found") {
+        setError('User not Found!')
+      }
 
       if (!response.ok) {
         throw new Error("Invalid credentials");
