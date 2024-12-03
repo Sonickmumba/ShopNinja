@@ -94,14 +94,6 @@ const registerUser = async (req, res) => {
 
     // added above
 
-
-
-
-
-
-
-
-    // res.status(201).send(`User registered with ID: ${result.rows[0].id}`);
   } catch (error) {
     console.error("Error in user registration:", error);
     res.status(500).send(error.message);
