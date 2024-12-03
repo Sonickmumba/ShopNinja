@@ -48,13 +48,14 @@ module.exports = function (passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/auth/google/callback",
-        passReqToCallback: true
+        callbackURL: "/auth/google/callback",
+        // passReqToCallback: true
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
           const googleId = profile.id;
           const email = profile.emails[0].value;
+          const fullName = profile.displayName;
 
           // Check if user exists
           const response = await pool.query(
@@ -65,9 +66,11 @@ module.exports = function (passport) {
 
           if (!user) {
             // If user doesn't exist, create a new one
+            const placeholderPassword = require('crypto').randomBytes(16).toString('hex');
+
             const insertResponse = await pool.query(
-              "INSERT INTO users (google_id, email, name) VALUES ($1, $2, $3) RETURNING *",
-              [googleId, email, profile.displayName]
+              "INSERT INTO users (google_id, email, name, password) VALUES ($1, $2, $3, $4) RETURNING *",
+              [googleId, email, fullName, placeholderPassword]
             );
             user = insertResponse.rows[0];
           }
