@@ -225,10 +225,9 @@ router.post(
   passport.authenticate("local", {
     failureRedirect: "/api/login",
   }),
-  (req, res) => {
+  async (req, res) => {
     // // Generate a JWT token
-    const token = jwtMiddleware.generateToken(req.user);
-    console.log(token);
+    const token = jwtMiddleware.generateToken(req.user);;
 
     // Optionally set the token in an HTTP-only cookie
     res.cookie("token", token, {
