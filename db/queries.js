@@ -75,7 +75,6 @@ const registerUser = async (req, res) => {
       [name, email, hashedPassword]
     );
 
-
     // added below
     
     // Auto-login after signup
