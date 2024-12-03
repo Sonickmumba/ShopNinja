@@ -23,12 +23,8 @@ function LoginPage() {
         body: JSON.stringify({ email, password })
       });
 
-      console.log(response)
-      if (response.statusText === "Not Found") {
-        setError('User not Found!')
-      }
-
       if (!response.ok) {
+        setError("Wrong password or Email!!");
         throw new Error("Invalid credentials");
       }
 
@@ -107,6 +103,7 @@ function LoginPage() {
         <button type="submit" className="login-button">
           Login
         </button>
+        {error && <p>{error}</p>}
       </form>
 
       <div className="social-container">
