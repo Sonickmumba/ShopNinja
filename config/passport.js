@@ -1,5 +1,4 @@
 const LocalStrategy = require("passport-local").Strategy;
-// const passport = require('passport');
 const pool = require("../models/database");
 const bcrypt = require("bcrypt");
 
@@ -49,7 +48,6 @@ module.exports = function (passport) {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback",
-        // passReqToCallback: true
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
