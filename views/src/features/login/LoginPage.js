@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Signup from "./Signup";
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -14,13 +13,13 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login attempted with:", { email, password });
-    // Add your login logic here
+    
     try {
       const response = await fetch('http://localhost:3001/api/login', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
       });
 
       if (!response.ok) {
@@ -30,10 +29,16 @@ function LoginPage() {
 
       const data = await response.json();
 
-      // Save token (optional)
-      localStorage.setItem('token', data.token);
+      if (data.message === 'Login successful') {
+        window.location.href = '/home'; // Redirect to home page after login
+      } else {
+        alert('Login failed');
+      }
 
-      navigate('/home');
+      // Save token (optional)
+      // localStorage.setItem('token', data.token);
+
+      // navigate('/home');
     } catch (error) {
       console.log(error);
     }

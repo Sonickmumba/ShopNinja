@@ -9,11 +9,11 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/login', // Redirect to login if authentication fails
+    failureRedirect: 'http://localhost:3001/login',
   }),
   (req, res) => {
     // Successful authentication, redirect to the homepage
-    res.redirect('http://localhost:3000/home');
+    res.redirect('http://localhost:3001/home');
   }
 );
 
