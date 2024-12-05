@@ -7,7 +7,7 @@ import "./LoginPage.css";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -22,8 +22,10 @@ function LoginPage() {
         credentials: "include",
       });
 
+      console.log(response)
+
       if (!response.ok) {
-        setError("Wrong password or Email!!");
+        // setError("Wrong password or Email!!");
         throw new Error("Invalid credentials");
       }
 
@@ -40,6 +42,8 @@ function LoginPage() {
       console.log(error);
     }
   };
+
+  // console.log(error);
 
   const handleGoogleLogin = () => {
     console.log("Google login clicked");
@@ -71,7 +75,7 @@ function LoginPage() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             id="userEmail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -104,7 +108,7 @@ function LoginPage() {
         <button type="submit" className="login-button">
           Login
         </button>
-        {error && <p>{error}</p>}
+        {/* {error && <p>{error}</p>} */}
       </form>
 
       <div className="social-container">
