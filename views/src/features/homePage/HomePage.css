@@ -1,33 +1,76 @@
-.homepage-container {
-  padding: 1rem;
-  margin: 0px auto;
-  max-width: 100%;
-  height: 100vh;
-  text-align: center;
-  background-color: var(--white-color);
-  border-radius: 24px;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.search-feature-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background-color: #0b79bf;
-  padding: 8px;
+.homepage-container {
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  background-color: var(--white-color);
 }
 
-.search-feature-container input, .features {
-  width: 50%;
-  margin:0 auto;
+header {
+  background-color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.notification-icon {
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+.notification-icon:hover {
+  color: #007bff;
 }
 
 .search-bar {
-  flex-grow: 0.5;
-  margin: 0 0.5rem;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #f8f9fa;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-bar::placeholder {
+  color: #aaa;
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
