@@ -11,9 +11,7 @@ const ProtectedRoute = ({ children }) => {
           method: "GET",
           credentials: "include",
         });
-        console.log(response)
         const data = await response.json();
-        console.log(data);
         setIsAuthenticated(data.message === "Authenticated")
         
       } catch (error) {
@@ -28,7 +26,7 @@ const ProtectedRoute = ({ children }) => {
   if (isAuthenticated === null) {
     return <div>Loading...</div>
   }
-  return isAuthenticated ? children : <Navigate to="/" />
+  return isAuthenticated ? children : <Navigate to="/login" />
 }
 
 export default ProtectedRoute

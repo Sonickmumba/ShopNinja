@@ -35,9 +35,6 @@ function LoginPage() {
         alert('Login failed');
       }
 
-      // Save token (optional)
-      // localStorage.setItem('token', data.token);
-
       // navigate('/home');
     } catch (error) {
       console.log(error);
