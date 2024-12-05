@@ -47,9 +47,6 @@ app.use(helmet());
 app.use(cookieParser()); 
 
 // session configuration
-app.use(bodyParser.json());
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -68,17 +65,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//for securing different HTTP headers
-app.use(helmet());
-
 //static files
 const buildPath = path.join(__dirname, "views/build");
 app.use(express.static(buildPath));
-
-
-// mount passport and session
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Routes
 app.use("/api", userRoutes);
@@ -87,7 +76,6 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/cart", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/cartegories", cartgoryRoutes);
-
 app.use('/auth', authRoutes);
 
 app.get("/status", (req, res) => {
@@ -126,9 +114,9 @@ app.use((err, req, res, next) => {
 
 
 // render static files from the build folder from view react folder
-app.get("/", (req, res) => {
-  res.sendFile(path.join(buildPath, "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(buildPath, "index.html"));
+// });
 
 // start server
 app.listen(port, () => {
