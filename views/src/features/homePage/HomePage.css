@@ -14,6 +14,7 @@ header {
   background-color: #fff;
   padding: 15px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .header-container {
@@ -42,16 +43,60 @@ header {
 
 .search-bar {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   margin-top: 10px;
   border-radius: 25px;
   border: 1px solid #ddd;
   font-size: 16px;
   outline: none;
+  background-color: var(--input-color);
 }
 
 .search-bar::placeholder {
   color: #aaa;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 35px;
+  top: 62px;
+  background-color: var(--black-color);
+  border-radius: 20px;
+  border: 0;
+  color: #FFF;
+  width: 55px;
+  height: 35px;
+  outline: 0;
+}
+
+.search-icon {
+  font-size: 30px;
+}
+
+/* Categories styling */
+.categories {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding: 5px 0;
+}
+
+.categories a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+  font-family: 'Nunito', sans-serif;
+}
+
+.categories a:hover {
+  background-color: var(--red-color);
+  color: white;
 }
 
 /* Footer styling */
