@@ -222,23 +222,71 @@ router.delete("/users/:id", userController.deleteUser);
 // Authenticated user routes
 router.post(
   "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/api/login",
-  }),
-  async (req, res) => {
-    // // Generate a JWT token
-    const token = jwtMiddleware.generateToken(req.user);;
+  // passport.authenticate("local", {
+  //   failureRedirect: "/api/login",
+  // }),
+  // async (req, res) => {
+  //   // // Generate a JWT token
+  //   // const token = jwtMiddleware.generateToken(req.user);
 
-    // Optionally set the token in an HTTP-only cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
-      maxAge: 3600000,
-    });
+  //   // // Optionally set the token in an HTTP-only cookie
+  //   // res.cookie("token", token, {
+  //   //   httpOnly: true,
+  //   //   secure: process.env.NODE_ENV === "production",
+  //   //   sameSite: "Strict",
+  //   //   maxAge: 3600000,
+  //   // });
 
-    // res.json({ token, id: req.user.id }); // Return the token in the response
-    res.json({ message: "Login successful", token, user: req.user });
+  //   // // res.json({ token, id: req.user.id }); // Return the token in the response
+  //   // res.json({ message: "Login successful", token, user: req.user });
+
+  //   // alternative
+  //   try {
+  //     const token = jwtMiddleware.generateToken(req.user);
+  //     res.cookie("token", token, {
+  //       httpOnly: true,
+  //       secure: process.env.NODE_ENV === "production",
+  //       sameSite: "Strict",
+  //       maxAge: 3600000, // 1 hour
+  //     });
+  //     res.json({ message: "Login successful", user: req.user });
+  //   } catch (error) {
+  //     console.error("Error during login:", error);
+  //     res.status(500).json({ message: "Internal server error" });
+  //   }
+  // }
+
+  (req, res, next) => {
+    passport.authenticate("local", { session: false }, (err, user, info) => {
+      if (err) {
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (!user) {
+        return res
+          .status(401)
+          .json({ message: info?.message || "Invalid email or password" });
+      }
+
+      req.logIn(user, { session: false }, (err) => {
+        if (err) {
+          return res.status(500).json({ message: "Internal server error" });
+        }
+
+        // Generate JWT token
+        const token = jwtMiddleware.generateToken(user);
+
+        // Optionally set the token as an HTTP-only cookie
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+          maxAge: 3600000, // 1 hour
+        });
+
+        // Send response with token and user details
+        res.json({ message: "Login successful", token, user });
+      });
+    })(req, res, next);
   }
 );
 
