@@ -98,7 +98,7 @@ function Signup() {
 
       <p>
         Already have an account?{" "}
-        <Link to="/">Sign in here</Link>
+        <Link to="/login">Sign in here</Link>
       </p>
     </div>
   );

@@ -7,7 +7,7 @@ import "./LoginPage.css";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,9 +24,15 @@ function LoginPage() {
 
       console.log(response)
 
+      // if (!response.ok) {
+      //   setError("Wrong password or Email!!");
+      //   throw new Error("Invalid credentials");
+      // }
+
       if (!response.ok) {
-        // setError("Wrong password or Email!!");
-        throw new Error("Invalid credentials");
+        const { message } = await response.json();
+        setError(message || "Invalid credentials.");
+        return;
       }
 
       const data = await response.json();
@@ -108,7 +114,7 @@ function LoginPage() {
         <button type="submit" className="login-button">
           Login
         </button>
-        {/* {error && <p>{error}</p>} */}
+        {error && <p>{error}</p>}
       </form>
 
       <div className="social-container">
