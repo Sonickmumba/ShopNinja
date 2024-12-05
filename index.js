@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 // CORS configuration
 const corsOptions = {
-  origin: 'http://localhost:3000', // React app's URL
+  origin: 'http://localhost:3000',
   credentials: true, // Allow cookies to be sent with the request
 };
 app.use(cors(corsOptions));
