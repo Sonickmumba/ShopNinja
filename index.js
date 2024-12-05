@@ -12,6 +12,16 @@ const swaggerDocs = require("./utils/swagger");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
+const cors = require("cors");
+const helmet = require("helmet");
+const path = require("path");
+require("dotenv").config();
+
+const swaggerDocs = require("./utils/swagger");
+
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const session = require("express-session");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const productRoutes = require("./routes/productRoutes");
@@ -46,6 +56,10 @@ app.use(helmet());
 app.use(cookieParser()); 
 
 // session configuration
+app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "default_secret",
@@ -63,18 +77,25 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//for securing different HTTP headers
+app.use(helmet());
+
 //static files
 const buildPath = path.join(__dirname, "views/build");
 app.use(express.static(buildPath));
 
-
 // Routes
+// mount passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/api", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/cart", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/cartegories", cartgoryRoutes);
+
 app.use('/auth', authRoutes);
 
 app.get("/status", (req, res) => {
@@ -112,6 +133,20 @@ app.use((err, req, res, next) => {
 });
 
 // start server
+
+app.get("/test", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ message: "Authenticated", user: req.user });
+  } else {
+    res.json({ message: "Not authenticated" });
+  }
+});
+
+// render static files from the build folder from view react folder
+app.get("/", (req, res) => {
+  res.sendFile(path.join(buildPath, "index.html"));
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
 });
