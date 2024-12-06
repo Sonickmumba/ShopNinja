@@ -27,7 +27,12 @@ const HomePage = () => {
           <a href="#">Men</a>
           <a href="#">Sale</a>
           <a href="#">Electronics</a>
-          {/* <a href="#">Sports</a> */}
+          <a href="#">Sports</a>
+          <a href="#">Books</a>
+          <a href="#">Pets</a>
+          <a href="#">Household</a>
+          <a href="#">Kids</a>
+          <a href="#">Industrial</a>
         </div>
       </header>
 
