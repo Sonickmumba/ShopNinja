@@ -6,7 +6,7 @@
 
 .homepage-container {
   font-family: 'Nunito', sans-serif;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--white-color);
 }
 
@@ -113,10 +113,7 @@ header {
   color: white;
 }
 
-
-
-
-/* Advertising Container */
+/* Advertising Container section*/
 .advertising-container {
   position: relative;
   height: 250px; /* Adjust height as needed */
@@ -138,11 +135,10 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
-/* Advertising Content */
 .advertising-content {
   position: relative;
   z-index: 2;
@@ -151,7 +147,6 @@ header {
   padding: 20px;
 }
 
-/* Product Title */
 .product-title {
   font-size: 24px;
   font-weight: bold;
@@ -160,14 +155,12 @@ header {
   letter-spacing: 1px;
 }
 
-/* Product Description */
 .product-description {
   font-size: 16px;
   margin-bottom: 15px;
   line-height: 1.4;
 }
 
-/* Call-to-Action Button */
 .cta-button {
   padding: 10px 20px;
   background-color: #ff4500;
@@ -204,10 +197,19 @@ header {
   }
 }
 
+.main-container {
+  /* height: calc(100vh-280px); */
+  /* overflow-y: auto;
+  scroll-behavior: smooth; */
+}
+
 /* featured section */
 .featured-products {
   padding: 20px;
   text-align: center;
+  height: 550px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .products-grid {
@@ -249,11 +251,6 @@ header {
   background-color: #e03e00;
 }
 
-.featured-products {
-  padding: 20px;
-  text-align: center;
-}
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -261,37 +258,6 @@ header {
   margin-top: 20px;
 }
 
-.product-card {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  transition: box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.product-card img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.add-to-cart-button {
-  padding: 5px 10px;
-  background-color: #ff4500;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.add-to-cart-button:hover {
-  background-color: #e03e00;
-}
 
 /* Footer styling */
 footer {
