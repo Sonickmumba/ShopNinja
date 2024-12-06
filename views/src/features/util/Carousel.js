@@ -1,53 +1,59 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Carousel.css";
 
-const Carousel = ({ data }) => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to go to the next image
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === data.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  const slides = [
+    {
+      backgroundImage: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fGUlMjBjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D",
+      title: "AirMax 360",
+      description: "Style and performance for your active lifestyle.",
+      buttonText: "Shop Now",
+    },
+    {
+      backgroundImage: "https://images.unsplash.com/photo-1695527081884-06f9dffe919a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzB8fGUlMjBjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D",
+      title: "SmartWatch Pro",
+      description: "Stay connected and fit with style.",
+      buttonText: "Discover More",
+    },
+    {
+      backgroundImage: "https://images.unsplash.com/photo-1545165393-011d14b0dcf0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzJ8fGUlMjBjb21tZXJjZXxlbnwwfHwwfHx8MA%3D%3D",
+      title: "Urban Backpack",
+      description: "Perfect for work, travel, and play.",
+      buttonText: "Explore",
+    },
+  ];
 
-  // Function to go to the previous image
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? data.length - 1 : prevIndex - 1
-    );
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000);
 
-  // Safeguard in case data is empty or undefined
-  if (!data || data.length === 0) {
-    return <p>No images available</p>; // Handle empty data gracefully
-  }
-
-  // Ensure the currentIndex is within the bounds of the array
-  const currentItem = data[currentIndex] || {};
-
-  const imageUrl = currentItem.image_url
-    ? String(currentItem.image_url)
-    : "https://via.placeholder.com/600x400";
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [slides.length]);
 
   return (
-    <div className="carousel">
-    <button className="carousel-button prev" onClick={goToPrevious}>
-      &#10094;
-    </button>
-    {data.length > 0 && data[currentIndex] ? (
-      <img
-        src={imageUrl}
-        alt={`Slide ${currentIndex}`}
-        className="carousel-image"
-      />
-    ) : (
-      <p>Loading...</p>
-    )}
-    <button className="carousel-button next" onClick={goToNext}>
-      &#10095;
-    </button>
-  </div>
+    <div className="carousel-container">
+      <div
+        className="carousel-wrapper"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className="carousel-slide"
+            style={{ backgroundImage: `url(${slide.backgroundImage})` }}
+          >
+            <div className="advertising-content">
+              <h1 className="product-title">{slide.title}</h1>
+              <p className="product-description">{slide.description}</p>
+              <button className="cta-button">{slide.buttonText}</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

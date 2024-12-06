@@ -5,6 +5,7 @@
 // import checkAuthStatus from "../../utils/checkAuthStatus";
 import { MdNotifications, MdSearch } from "react-icons/md";
 import Footer from "./Footer";
+import Carousel from "../util/Carousel";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -20,7 +21,9 @@ const HomePage = () => {
           className="search-bar"
           placeholder="What are you looking for ?"
         />
-        <button type="button" className="search-button"><MdSearch className="search-icon" /></button>
+        <button type="button" className="search-button">
+          <MdSearch className="search-icon" />
+        </button>
         <div className="categories">
           <a href="#">All</a>
           <a href="#">Women</a>
@@ -35,6 +38,22 @@ const HomePage = () => {
           <a href="#">Industrial</a>
         </div>
       </header>
+      <main className="main-container">
+        <Carousel />
+        <section className="featured-products">
+          <h2>Featured Products</h2>
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
