@@ -52,6 +52,52 @@ const HomePage = () => {
             </div>
             {/* Repeat for other products */}
           </div>
+
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
+          </div>
+
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
+          </div>
+
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
+          </div>
+
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
+          </div>
+
+          
         </section>
       </main>
 
