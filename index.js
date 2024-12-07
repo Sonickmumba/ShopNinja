@@ -86,6 +86,8 @@ app.get("/status", (req, res) => {
     // If not authenticated, check if there's a valid JWT in the cookies
     const token = req.cookies?.token;
 
+    console.log(token)
+    
     if (token) {
       jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
