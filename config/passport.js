@@ -2,7 +2,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const pool = require("../models/database");
 const bcrypt = require("bcrypt");
 
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 module.exports = function (passport) {
   passport.use(
@@ -64,7 +64,9 @@ module.exports = function (passport) {
 
           if (!user) {
             // If user doesn't exist, create a new one
-            const placeholderPassword = require('crypto').randomBytes(16).toString('hex');
+            const placeholderPassword = require("crypto")
+              .randomBytes(16)
+              .toString("hex");
 
             const insertResponse = await pool.query(
               "INSERT INTO users (google_id, email, name, password) VALUES ($1, $2, $3, $4) RETURNING *",
