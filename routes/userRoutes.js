@@ -220,41 +220,39 @@ router.delete("/users/:id", userController.deleteUser);
  */
 
 // Authenticated user routes
-router.post(
-  "/login",
-  (req, res, next) => {
-    passport.authenticate("local", { session: false }, (err, user, info) => {
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", { session: false }, (err, user, info) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: info?.message || "Invalid email or password" });
+    }
+
+    req.logIn(user, { session: false }, (err) => {
       if (err) {
         return res.status(500).json({ message: "Internal server error" });
       }
-      if (!user) {
-        return res
-          .status(401)
-          .json({ message: info?.message || "Invalid email or password" });
-      }
 
-      req.logIn(user, { session: false }, (err) => {
-        if (err) {
-          return res.status(500).json({ message: "Internal server error" });
-        }
+      // Generate JWT token
+      const token = jwtMiddleware.generateToken(user);
 
-        // Generate JWT token
-        const token = jwtMiddleware.generateToken(user);
-
-        // set the token as an HTTP-only cookie
-        res.cookie("token", token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "Strict",
-          maxAge: 3600000, // 1 hour
-        });
-
-        // Send response with token and user details
-        res.json({ message: "Login successful", token, user });
+      console.log(token);
+      // set the token as an HTTP-only cookie
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Strict",
+        maxAge: 3600000, // 1 hour
       });
-    })(req, res, next);
-  }
-);
+
+      // Send response with token and user details
+      res.json({ message: "Login successful", token, user });
+    });
+  })(req, res, next);
+});
 
 /**
  * @swagger

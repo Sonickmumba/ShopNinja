@@ -1,40 +1,65 @@
-.carousel {
+/* Carousel Container */
+.carousel-container {
   position: relative;
-  width: 80%;
-  max-width: 600px;
-  margin: auto;
+  /* width: 100%; */
+  /* max-width: 100%; */
   overflow: hidden;
+  /* height: 250px; */
+  margin: 20px 15px;
+}
+
+/* Wrapper for Slides */
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Individual Slide */
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Advertising Content */
+.advertising-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  /* padding: 20px; */
+  background: rgba(0, 0, 0, 0.5); 
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-image {
   width: 100%;
-  height: auto;
-  display: block;
 }
 
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
+.product-title {
   font-size: 24px;
-  padding: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #ff4500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  text-transform: uppercase;
   cursor: pointer;
-  z-index: 1;
+  transition: background-color 0.3s ease;
 }
 
-.carousel-button.prev {
-  left: 10px;
-}
-
-.carousel-button.next {
-  right: 10px;
-}
-
-.carousel-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+.cta-button:hover {
+  background-color: #e03e00;
 }

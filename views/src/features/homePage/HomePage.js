@@ -3,213 +3,98 @@
 // import Carousel from "../util/Carousel";
 // import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
 // import checkAuthStatus from "../../utils/checkAuthStatus";
+import { MdNotifications, MdSearch } from "react-icons/md";
+import Footer from "./Footer";
+import Carousel from "../util/Carousel";
 import "./HomePage.css";
 
 const HomePage = () => {
-  // const [products, setProducts] = useState([]);
-  // const [categories, setCategories] = useState([]);
-
-  // const fetchCategories = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:3000/api/cartegories");
-  //     setCategories(response.data);
-  //   } catch (error) {
-  //     throw new Error("Error fetching products", error);
-      
-  //   }
-  // }
-
-
-  // useEffect(()=>{
-  //   // fetchCategories();
-  // }, [navigate])
-
   return (
     <div className="homepage-container">
-      <nav className="navbar">
-        <div className="logo">ShopNinja</div>
-        <ul className="navigation">
-          <li>
-            <a href="#login">Login</a>
-          </li>
-          <div className="line"></div>
-          <li>
-            <a href="#register">Register</a>
-          </li>
-          <div className="line"></div>
-          <li>
-            <a href="#orders">Orders</a>
-          </li>
-          <div className="line"></div>
-          <li>
-            <a href="#account">My Account</a>
-          </li>
-          <div className="navbar-icons">
-            {/* <FiShoppingCart /> */}
-            {/* <FiUser /> */}
-          </div>
-        </ul>
-      </nav>
-      <div className="search-feature-container">
+      <header>
+        <div className="header-container">
+          <p className="shop-name">ShopNinja</p>
+          <MdNotifications className="notification-icon" />
+        </div>
         <input
           type="text"
           className="search-bar"
           placeholder="What are you looking for ?"
-          // value={searchTerm}
-          // onChange={handleSearch}
         />
-        <ul className="features">
-          <li><a>New Arrivals</a></li>
-          <li><a>Summer</a></li>
-          <li><a>Deal & Promotions</a></li>
-          <li><a>Sell on ShopNinja</a></li>
-          <li><a>Christmas</a></li>
-          <li><a>Valentines</a></li>
-          <li><a>Sales</a></li>
-        </ul>
-      </div>
+        <button type="button" className="search-button">
+          <MdSearch className="search-icon" />
+        </button>
+        <div className="categories">
+          <a href="#">All</a>
+          <a href="#">Women</a>
+          <a href="#">Men</a>
+          <a href="#">Sale</a>
+          <a href="#">Electronics</a>
+          <a href="#">Sports</a>
+          <a href="#">Books</a>
+          <a href="#">Pets</a>
+          <a href="#">Household</a>
+          <a href="#">Kids</a>
+          <a href="#">Industrial</a>
+        </div>
+      </header>
+      <main className="main-container">
+        <Carousel />
+        <section className="featured-products">
+          <h2>Featured Products</h2>
+          <div className="products-grid">
+            {/* Dynamically render product cards */}
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+            {/* Repeat for other products */}
 
-      <aside className="mobile-category-menu">
-          <h3>Shop by Caregory</h3>
-          <ul>
-            {/* {categories.map((category) => (
-              <li
-                key={category.id}
-                // onClick={() => setSelectedCategory(category.name)}
-              >
-                {category.name}
-              </li>
-            ))} */}
-            {/* <li onClick={() => setSelectedCategory("")}>All Products</li> */}
-            <li>sonick</li>
-          </ul>
-        </aside>
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+
+            <div className="product-card">
+              <img src="https://via.placeholder.com/150" alt="Product" />
+              <h3>Product Name</h3>
+              <p>$49.99</p>
+              <button className="add-to-cart-button">Add to Cart</button>
+            </div>
+
+          </div>
+          
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };
-
-// const HomePage = () => {
-//   const [products, setProducts] = useState([]);
-//   const [categories, setCategories] = useState([]);
-//   const [selectedCategory, setSelectedCategory] = useState("");
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   // Fetch products and categories when component mounts
-//   useEffect(() => {
-//     // fetchProducts();
-//     fetchCategories();
-//   }, []);
-
-//   const fetchProducts = async () => {
-//     try {
-//       const response = await axios.get("http://localhost:3000/api/products");
-//       console.log(response);
-//       setProducts(response.data);
-//     } catch (error) {
-//       console.error("Error fetching products", error);
-//     }
-//   };
-
-//   const fetchCategories = async () => {
-//     try {
-//       const response = await axios.get("http://localhost:3000/api/cartegories");
-//       setCategories(response.data);
-//     } catch (error) {
-//       console.error("Error fetching categories", error);
-//     }
-//   };
-
-//   const handleSearch = (e) => {
-//     setSearchTerm(e.target.value);
-//   };
-
-//   const filterProducts = (products) => {
-//     return products.filter(
-//       (product) =>
-//         (selectedCategory ? product.category === selectedCategory : true) &&
-//         (searchTerm
-//           ? product.name.toLowerCase().includes(searchTerm.toLowerCase())
-//           : true)
-//     );
-//   };
-
-//   return (
-//     <div className="mobile-homepage-container">
-//       {/* Navigation Bar */}
-//       <nav className="mobile-navbar">
-//         <div
-//           className="mobile-navbar-menu"
-//           onClick={() => setMenuOpen(!menuOpen)}
-//         >
-//           <FiMenu />
-//         </div>
-//         <div className="mobile-navbar-brand"></div>
-// <input
-//   type="text"
-//   className="mobile-search-bar"
-//   placeholder="What are you looking for ?"
-//   value={searchTerm}
-//   onChange={handleSearch}
-// />
-//         <div className="mobile-navbar-icons">
-//           <FiShoppingCart />
-//           <FiUser />
-//         </div>
-//       </nav>
-
-//       {/* Collapsible Menu for Categories */}
-//       {menuOpen && (
-        // <aside className="mobile-category-menu">
-        //   <div className="aside-title">ShopNinja</div>
-        //   <h3>Categories</h3>
-        //   <ul>
-        //     {categories.map((category) => (
-        //       <li
-        //         key={category.id}
-        //         onClick={() => setSelectedCategory(category.name)}
-        //       >
-        //         {category.name}
-        //       </li>
-        //     ))}
-        //     <li onClick={() => setSelectedCategory("")}>All Products</li>
-        //   </ul>
-        // </aside>
-//       )}
-
-//       {/* Featured Products */}
-//       <section className="mobile-featured-products">
-//         <div className="features-div">
-//           <h2>Featured Caregories</h2>
-//           <div className="featured-categories">
-//             <Carousel data={categories} />
-//           </div>
-//         </div>
-//         <div className="mobile-product-list">
-//           {filterProducts(products).map((product) => (
-//             <div className="mobile-product-card" key={product.id}>
-//               <img
-//                 src={product.imageUrl}
-//                 alt={product.name}
-//                 className="mobile-product-image"
-//               />
-//               <div className="mobile-product-info">
-//                 <h3>{product.name}</h3>
-//                 <p>${product.price}</p>
-//                 <button onClick={() => addToCart(product.id)}>
-//                   Add to Cart
-//                 </button>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </section>
-//     </div>
-//   );
-// };
-
-// const addToCart = (productId) => {
-//   console.log(`Product ${productId} added to cart`);
-// };
 
 export default HomePage;
