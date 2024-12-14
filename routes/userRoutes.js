@@ -220,9 +220,10 @@ router.delete("/users/:id", userController.deleteUser);
  */
 
 // Authenticated user routes
+
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", { session: false }, (err, user, info) => {
-    if (err) {
+    if (err) {      
       return res.status(500).json({ message: "Internal server error" });
     }
     if (!user) {
@@ -236,10 +237,10 @@ router.post("/login", (req, res, next) => {
         return res.status(500).json({ message: "Internal server error" });
       }
 
+
       // Generate JWT token
       const token = jwtMiddleware.generateToken(user);
-
-      console.log(token);
+      
       // set the token as an HTTP-only cookie
       res.cookie("token", token, {
         httpOnly: true,
@@ -290,7 +291,7 @@ router.get("/logout", (req, res) => {
     if (err) {
       return res.status(500).json({ message: "Logout failed", error: err });
     }
-    res.redirect("/");
+    res.redirect("/home");
   });
 });
 
