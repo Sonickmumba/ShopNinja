@@ -38,7 +38,8 @@ function LoginPage() {
       const data = await response.json();
 
       if (data.message === 'Login successful') {
-        window.location.href = '/home'; // Redirect to home page after login
+        navigate('/home');
+        // window.location.href = '/home';
       } else {
         alert('Login failed');
       }
@@ -48,8 +49,7 @@ function LoginPage() {
       console.log(error);
     }
   };
-
-  // console.log(error);
+  
 
   const handleGoogleLogin = () => {
     console.log("Google login clicked");
