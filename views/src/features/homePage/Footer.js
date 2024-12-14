@@ -6,13 +6,32 @@ import FooterItem from "./FooterItem";
 import "./Footer.css";
 
 function Footer() {
+  const handleHomeClick = () => {
+    console.log('clicked home button')
+  };
+
+  const handleCategoriesClick = () => {
+    console.log('clicked cartegories button')
+  };
+
+  const handleYouClick = () => {
+    console.log('clicked you button')
+  };
+
+  const handleSearchClick = () => {
+    console.log('clicked search button')
+  };
+
+  const handleCartClick = () => {
+    console.log('clicked cart')
+  }
   return (
     <div className="footer">
-      <FooterItem icon={AiOutlineHome} size={30}  label="Home"/>
-      <FooterItem icon={BiCategory} size={30}  label="Categories"/>
-      <FooterItem icon={FiUser} size={30}  label="You"/>
-      <FooterItem icon={AiOutlineSearch} size={30}  label="Search"/>
-      <FooterItem icon={AiOutlineShoppingCart} size={30}  label="Cart"/>
+      <FooterItem icon={AiOutlineHome} size={30}  label="Home" onClick={handleHomeClick}/>
+      <FooterItem icon={BiCategory} size={30}  label="Categories" onClick={handleCategoriesClick}/>
+      <FooterItem icon={FiUser} size={30}  label="You" onClick={handleYouClick}/>
+      <FooterItem icon={AiOutlineSearch} size={30}  label="Search" onClick={handleSearchClick}/>
+      <FooterItem icon={AiOutlineShoppingCart} size={30}  label="Cart" onClick={handleCartClick}/>
     </div>
   );
 }
