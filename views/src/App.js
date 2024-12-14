@@ -5,7 +5,7 @@ import HomePage from "./features/homePage/HomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./features/login/LoginPage";
 import Signup from "./features/login/Signup";
-import ProtectedRoute from "./features/util/ProtectedRoute";
+// import ProtectedRoute from "./features/util/ProtectedRoute";
 import "./App.css";
 
 function App() {
@@ -13,16 +13,22 @@ function App() {
     // <div className="App">
     <Router>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/home"
-          element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
+          element={<HomePage />
           }
         />
+        {/* <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        /> */}
       </Routes>
     </Router>
     // </div>
