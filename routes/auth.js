@@ -5,6 +5,7 @@ const router = express.Router();
 // Google login route
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
+
 // Google callback route
 router.get(
   '/google/callback',
