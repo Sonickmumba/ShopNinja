@@ -92,7 +92,7 @@ const HomePage = () => {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
