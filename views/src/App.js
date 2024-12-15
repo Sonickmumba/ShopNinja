@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import HomePage from "./features/homePage/HomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { useNavigate } from 'react-router-dom';
 import LoginPage from "./features/login/LoginPage";
 import Signup from "./features/login/Signup";
 import User from "./features/login/User";
@@ -13,15 +12,57 @@ import Footer from "./features/homePage/Footer";
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  // const navigate = useNavigate();
 
-  const handleSignIn = () => {
+  // const checkSignedIn = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3001/status');
+  //     console.log(response)
+  //     if (response.ok) {
+  //       setIsSignedIn(true);
+  //     }
+  //   } catch (error) {
+  //     throw new Error(error)
+  //   }
+  // }
+
+  const checkSignedIn = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/status", {
+        credentials: "include", // Ensure cookies are sent with the request
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch status");
+      }
+  
+      const data = await response.json();
+      console.log(data)
+      if (data.message === "Authenticated") {
+        setIsSignedIn(true); // User is authenticated
+      } else {
+        setIsSignedIn(false); // Not authenticated
+      }
+    } catch (error) {
+      console.error("Error checking sign-in status:", error);
+      setIsSignedIn(false); // Default to not signed in on error
+    }
+  };
+  
+
+  console.log(isSignedIn);
+
+  const handleSignIn = (navigate) => {
     console.log("Sign in button clicked");
-    // navigate('/login')
+    navigate('/login')
+    checkSignedIn();
   };
 
+  useEffect(() => {
+    checkSignedIn();
+  }, []);
+
   return (
-    <div className="App">
+    // <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -38,13 +79,12 @@ function App() {
         /> */}
           <Route
             path="/user"
-            element={<User isSignedIn={isSignedIn} onSignIn={handleSignIn} />}
+            element={<User isSignedIn={isSignedIn} onSignIn={(navigate) => handleSignIn(navigate)} />}
           />
         </Routes>
         <Footer />
       </Router>
-      {/* <Footer /> */}
-    </div>
+    // </div>
   );
 }
 

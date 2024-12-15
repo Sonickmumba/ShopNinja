@@ -4,6 +4,28 @@
     padding: 16px;
     font-family: Arial, sans-serif;
   }
+
+  /* Profile Section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    object-fit: cover;
+  }
+  
+  .user-name {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
   
   /* Top Section */
   .sign-in-section {
@@ -38,16 +60,35 @@
     gap: 16px;
   }
   
-  .user-option {
+  /* .user-option {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 16px;
+    padding: 8px;
     color: #333;
     cursor: pointer;
+    background-color: var(--white-color);
   }
-  
-  .user-option:hover {
-    color: #007bff;
+   */
+
+   .message-arrow {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    justify-content: space-between;
+    margin-left: 8px;
+   }
+
+   .user-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
   }
   

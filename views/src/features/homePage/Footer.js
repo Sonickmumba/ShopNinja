@@ -11,6 +11,7 @@ function Footer() {
 
   const handleHomeClick = () => {
     console.log('clicked home button')
+    navigate("/");
   };
 
   const handleCategoriesClick = () => {

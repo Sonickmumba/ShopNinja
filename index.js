@@ -79,6 +79,7 @@ app.use("/api/cartegories", cartgoryRoutes);
 app.use('/auth', authRoutes);
 
 app.get("/status", (req, res) => {
+  console.log("isAuthenticated:", req.isAuthenticated());
   if (req.isAuthenticated()) {
     // If the user is authenticated via session
     res.json({ message: "Authenticated", user: req.user });

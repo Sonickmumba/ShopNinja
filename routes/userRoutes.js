@@ -291,6 +291,7 @@ router.get("/logout", (req, res) => {
     if (err) {
       return res.status(500).json({ message: "Logout failed", error: err });
     }
+    res.clearCookie("token");
     res.redirect("/home");
   });
 });
