@@ -10,7 +10,6 @@ function Footer() {
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
-    console.log('clicked home button')
     navigate("/");
   };
 
@@ -19,7 +18,6 @@ function Footer() {
   };
 
   const handleUserClick = () => {
-    console.log('clicked you button')
     navigate("/user");
   };
 
