@@ -19,6 +19,7 @@ function Footer() {
 
   const handleUserClick = () => {
     console.log('clicked you button')
+    navigate("/user");
   };
 
   const handleSearchClick = () => {

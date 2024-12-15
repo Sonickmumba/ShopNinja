@@ -3,6 +3,7 @@ import { FiSettings, FiMessageSquare } from "react-icons/fi";
 import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiMap } from "react-icons/bi";
+import './user.css';
 
 const User = ({ isSignedIn, onSignIn }) => {
   return (
