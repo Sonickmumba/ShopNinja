@@ -13,18 +13,6 @@ import Footer from "./features/homePage/Footer";
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  // const checkSignedIn = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3001/status');
-  //     console.log(response)
-  //     if (response.ok) {
-  //       setIsSignedIn(true);
-  //     }
-  //   } catch (error) {
-  //     throw new Error(error)
-  //   }
-  // }
-
   const checkSignedIn = async () => {
     try {
       const response = await fetch("http://localhost:3001/status", {
@@ -54,7 +42,7 @@ function App() {
   const handleSignIn = (navigate) => {
     console.log("Sign in button clicked");
     navigate('/login')
-    checkSignedIn();
+    // checkSignedIn();
   };
 
   useEffect(() => {
