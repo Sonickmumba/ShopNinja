@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "./features/login/userSlice";
+import signout from "./features/util/signout";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import HomePage from "./features/homePage/HomePage";
@@ -19,19 +20,8 @@ function App() {
   const fetchUserProfile = async () => {
     try {
       const response = await fetch("http://localhost:3001/status", {
-        credentials: "include", // Ensure cookies are sent with the request
+        credentials: "include",
       });
-
-      // if (response.status === 200) {
-      //   const data = await response.json();
-      //   console.log(data.user)
-      //   dispatch(signIn(data));
-      //   dispatch(signOut());
-      // }
-
-      // if (!response.ok) {
-      //   throw new Error("Failed to fetch status");
-      // }
 
       const data = await response.json();
 
@@ -45,7 +35,10 @@ function App() {
     }
   };
 
-  console.log(isSignedIn);
+  const handleSignout = () => {
+    dispatch(signOut())
+    signout();
+  }
 
   // const handleSignIn = (navigate) => {
   //   console.log("Sign in button clicked");
@@ -57,6 +50,7 @@ function App() {
     fetchUserProfile();
   }, []);
 
+  console.log(isSignedIn);
   return (
     // <div className="App">
     <Router>
@@ -75,7 +69,7 @@ function App() {
         /> */}
         <Route
           path="/user"
-          element={<User isSignedIn={isSignedIn} userProfile={userProfile} />}
+          element={<User isSignedIn={isSignedIn} userProfile={userProfile} handleSignout={handleSignout}/>}
         />
       </Routes>
       <Footer fetchUserProfile={fetchUserProfile}/>
