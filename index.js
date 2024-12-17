@@ -79,15 +79,12 @@ app.use("/api/cartegories", cartgoryRoutes);
 app.use('/auth', authRoutes);
 
 app.get("/status", (req, res) => {
-  console.log("isAuthenticated:", req.isAuthenticated());
   if (req.isAuthenticated()) {
     // If the user is authenticated via session
     res.json({ message: "Authenticated", user: req.user });
   } else {
     // If not authenticated, check if there's a valid JWT in the cookies
     const token = req.cookies?.token;
-
-    console.log(token)
     
     if (token) {
       jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
