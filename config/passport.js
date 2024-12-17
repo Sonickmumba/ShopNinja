@@ -18,7 +18,6 @@ module.exports = function (passport) {
             [email]
           );
           const user = response.rows[0];
-          console.log(user);
 
           if (!user) {
             console.log("No user found with that email");
