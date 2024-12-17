@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn, signOut } from "./features/login/userSlice";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import HomePage from "./features/homePage/HomePage";
@@ -11,53 +13,59 @@ import "./App.css";
 import Footer from "./features/homePage/Footer";
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const dispatch = useDispatch();
+  const { isSignedIn, userProfile } = useSelector((state) => state.user);
 
-  const checkSignedIn = async () => {
+  const fetchUserProfile = async () => {
     try {
       const response = await fetch("http://localhost:3001/status", {
         credentials: "include", // Ensure cookies are sent with the request
       });
-  
-      if (!response.ok) {
-        throw new Error("Failed to fetch status");
-      }
-  
+
+      // if (response.status === 200) {
+      //   const data = await response.json();
+      //   console.log(data.user)
+      //   dispatch(signIn(data));
+      //   dispatch(signOut());
+      // }
+
+      // if (!response.ok) {
+      //   throw new Error("Failed to fetch status");
+      // }
+
       const data = await response.json();
-      console.log(data)
-      if (data.message === "Authenticated") {
-        setIsSignedIn(true); // User is authenticated
+
+      if (data?.user) {
+        dispatch(signIn(data.user))
       } else {
-        setIsSignedIn(false); // Not authenticated
+        dispatch(signOut())
       }
     } catch (error) {
       console.error("Error checking sign-in status:", error);
-      setIsSignedIn(false); // Default to not signed in on error
     }
   };
-  
 
   console.log(isSignedIn);
 
-  const handleSignIn = (navigate) => {
-    console.log("Sign in button clicked");
-    navigate('/login')
-    // checkSignedIn();
-  };
+  // const handleSignIn = (navigate) => {
+  //   console.log("Sign in button clicked");
+  //   navigate('/login')
+  //   fetchUserProfile();
+  // };
 
   useEffect(() => {
-    checkSignedIn();
+    fetchUserProfile();
   }, []);
 
   return (
     // <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/home" element={<HomePage />} />
-          {/* <Route
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<HomePage />} />
+        {/* <Route
           path="/checkout"
           element={
             <ProtectedRoute>
@@ -65,13 +73,13 @@ function App() {
             </ProtectedRoute>
           }
         /> */}
-          <Route
-            path="/user"
-            element={<User isSignedIn={isSignedIn} onSignIn={(navigate) => handleSignIn(navigate)} />}
-          />
-        </Routes>
-        <Footer />
-      </Router>
+        <Route
+          path="/user"
+          element={<User isSignedIn={isSignedIn} userProfile={userProfile} />}
+        />
+      </Routes>
+      <Footer fetchUserProfile={fetchUserProfile}/>
+    </Router>
     // </div>
   );
 }
