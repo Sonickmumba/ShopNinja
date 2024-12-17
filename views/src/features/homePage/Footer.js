@@ -6,7 +6,7 @@ import { FiUser } from "react-icons/fi";
 import FooterItem from "./FooterItem";
 import "./Footer.css";
 
-function Footer() {
+function Footer( { fetchUserProfile }) {
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
@@ -19,6 +19,7 @@ function Footer() {
 
   const handleUserClick = () => {
     navigate("/user");
+    fetchUserProfile()
   };
 
   const handleSearchClick = () => {
