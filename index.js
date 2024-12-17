@@ -100,7 +100,6 @@ app.get("/status", (req, res) => {
 });
 
 
-
 // render static files from the build folder from view react folder or fallback route for react
 app.get("*", (req, res) => {
   res.sendFile(path.join(buildPath, "index.html"));

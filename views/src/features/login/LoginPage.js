@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./LoginPage.css";
@@ -10,6 +10,7 @@ function LoginPage() {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,13 +23,6 @@ function LoginPage() {
         credentials: "include",
       });
 
-      console.log(response)
-
-      // if (!response.ok) {
-      //   setError("Wrong password or Email!!");
-      //   throw new Error("Invalid credentials");
-      // }
-
       if (!response.ok) {
         const { message } = await response.json();
         setError(message || "Invalid credentials.");
@@ -38,13 +32,12 @@ function LoginPage() {
       const data = await response.json();
 
       if (data.message === 'Login successful') {
-        navigate('/home');
-        // window.location.href = '/home';
+        const redirectTo = location.state?.from?.pathname || "/home";
+        navigate(redirectTo);
       } else {
         alert('Login failed');
       }
 
-      // navigate('/home');
     } catch (error) {
       console.log(error);
     }

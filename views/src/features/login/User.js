@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSettings, FiChevronRight, FiMessageSquare } from "react-icons/fi";
+import { FaSignOutAlt } from 'react-icons/fa';
 import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiMap } from "react-icons/bi";
 import "./user.css";
 import { useSelector } from "react-redux";
 
-const User = () => {
+const User = ({ handleSignout }) => {
   const { isSignedIn, userProfile } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -67,6 +68,14 @@ const User = () => {
             <FiChevronRight size={20} className="right-arrow" />
           </div>
         </div>
+        {isSignedIn && <div className="user-option">
+          <FaSignOutAlt size={24} />
+          <div className="message-arrow" onClick={handleSignout}>
+            <span>Sign out</span>
+            <FiChevronRight size={20} className="right-arrow" />
+          </div>
+        </div>}
+        
       </div>
     </div>
   );
