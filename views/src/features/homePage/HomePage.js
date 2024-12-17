@@ -1,10 +1,5 @@
 // import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Carousel from "../util/Carousel";
-// import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
-// import checkAuthStatus from "../../utils/checkAuthStatus";
 import { MdNotifications, MdSearch } from "react-icons/md";
-// import Footer from "./Footer";
 import Carousel from "../util/Carousel";
 import "./HomePage.css";
 
