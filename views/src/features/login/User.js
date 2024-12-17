@@ -5,21 +5,14 @@ import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiMap } from "react-icons/bi";
 import "./user.css";
+import { useSelector } from "react-redux";
 
-const User = ({ isSignedIn, onSignIn, userProfile }) => {
+const User = () => {
+  const { isSignedIn, userProfile } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   return (
     <div className="user-component">
-      {/* {!isSignedIn && (
-        <div className="sign-in-section">
-          <p>Sign in for the best experience</p>
-          <button className="sign-in-button" onClick={() => onSignIn(navigate)}>
-            Sign In
-          </button>
-        </div>
-      )} */}
-
       {isSignedIn ? (
         <div className="profile-section">
           <img
@@ -32,7 +25,7 @@ const User = ({ isSignedIn, onSignIn, userProfile }) => {
       ) : (
         <div className="sign-in-section">
           <p>Sign in for the best experience</p>
-          <button className="sign-in-button" onClick={() => onSignIn(navigate)}>
+          <button className="sign-in-button" onClick={() => navigate('/login')}>
             Sign In
           </button>
         </div>
