@@ -34,8 +34,6 @@ function LoginPage() {
       if (data.message === 'Login successful') {
         const redirectTo = location.state?.from?.pathname || "/home";
         navigate(redirectTo);
-        // navigate('/home');
-        // window.location.href = '/home';
       } else {
         alert('Login failed');
       }
