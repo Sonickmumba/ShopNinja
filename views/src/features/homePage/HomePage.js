@@ -4,7 +4,7 @@
 // import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
 // import checkAuthStatus from "../../utils/checkAuthStatus";
 import { MdNotifications, MdSearch } from "react-icons/md";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Carousel from "../util/Carousel";
 import "./HomePage.css";
 
@@ -25,17 +25,17 @@ const HomePage = () => {
           <MdSearch className="search-icon" />
         </button>
         <div className="categories">
-          <a href="#">All</a>
-          <a href="#">Women</a>
-          <a href="#">Men</a>
-          <a href="#">Sale</a>
-          <a href="#">Electronics</a>
-          <a href="#">Sports</a>
-          <a href="#">Books</a>
-          <a href="#">Pets</a>
-          <a href="#">Household</a>
-          <a href="#">Kids</a>
-          <a href="#">Industrial</a>
+          <a href="#jkj">All</a>
+          <a href="#gh">Women</a>
+          <a href="#n">Men</a>
+          <a href="#p">Sale</a>
+          <a href="#bn">Electronics</a>
+          <a href="#po">Sports</a>
+          <a href="#gf">Books</a>
+          <a href="#sd">Pets</a>
+          <a href="#er">Household</a>
+          <a href="#as">Kids</a>
+          <a href="#ex">Industrial</a>
         </div>
       </header>
       <main className="main-container">
@@ -91,8 +91,6 @@ const HomePage = () => {
           
         </section>
       </main>
-
-      {/* <Footer /> */}
     </div>
   );
 };
