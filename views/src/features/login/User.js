@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSettings, FiChevronRight, FiMessageSquare } from "react-icons/fi";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaRegCircleQuestion } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { LiaHandsHelpingSolid } from "react-icons/lia";
 import { BiMap } from "react-icons/bi";
 import "./user.css";
 import { useSelector } from "react-redux";
@@ -19,7 +20,7 @@ const User = ({ handleSignout }) => {
         <div className="user-back">
           <MdKeyboardArrowLeft size={40} /> <h3>My Profile</h3>
         </div>
-        <button type="button" className="signout-button">
+        <button type="button" className="signout-button" onClick={handleSignout}>
           Sign out
         </button>
       </div>
@@ -46,7 +47,7 @@ const User = ({ handleSignout }) => {
           </button>
         </div>
       )}
-      <h4>Account</h4>
+      <h3 className="account">Account</h3>
       <div className="user-options">
         <div className="user-option">
           <FiMessageSquare size={24} />
@@ -83,15 +84,23 @@ const User = ({ handleSignout }) => {
             <FiChevronRight size={20} className="right-arrow" />
           </div>
         </div>
-        {isSignedIn && (
-          <div className="user-option">
-            <FaSignOutAlt size={24} />
-            <div className="message-arrow" onClick={handleSignout}>
-              <span>Sign out</span>
-              <FiChevronRight size={20} className="right-arrow" />
-            </div>
+      </div>
+      <h3 className="account">help and support</h3>
+      <div className="user-options">
+        <div className="user-option">
+          <LiaHandsHelpingSolid size={24} />
+          <div className="message-arrow">
+            <span>Help</span>
+            <FiChevronRight size={20} className="right-arrow" />
           </div>
-        )}
+        </div>
+        <div className="user-option">
+          <FaRegCircleQuestion size={24} />
+          <div className="message-arrow">
+            <span>FAQ</span>
+            <FiChevronRight size={20} className="right-arrow" />
+          </div>
+        </div>
       </div>
     </div>
   );
