@@ -36,7 +36,8 @@ function App() {
     }
   };
 
-  const handleSignout = () => {
+  const handleSignout = (e) => {
+    e.preventDefault();
     dispatch(signOut())
     signout();
   }
