@@ -12,6 +12,7 @@ import User from "./features/login/User";
 // import ProtectedRoute from "./features/util/ProtectedRoute";
 import "./App.css";
 import Footer from "./features/homePage/Footer";
+import ProductDetails from "./features/homePage/products/ProductDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,17 +41,10 @@ function App() {
     signout();
   }
 
-  // const handleSignIn = (navigate) => {
-  //   console.log("Sign in button clicked");
-  //   navigate('/login')
-  //   fetchUserProfile();
-  // };
-
   useEffect(() => {
     fetchUserProfile();
   }, []);
 
-  console.log(isSignedIn);
   return (
     // <div className="App">
     <Router>
@@ -59,6 +53,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetails />}/>
         {/* <Route
           path="/checkout"
           element={
