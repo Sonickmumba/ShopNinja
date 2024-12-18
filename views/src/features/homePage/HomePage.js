@@ -2,13 +2,14 @@
 import { MdNotifications, MdSearch } from "react-icons/md";
 import Carousel from "../util/Carousel";
 import "./HomePage.css";
+import Product from "./products/Product";
 
 const HomePage = () => {
-  const products = [
-    { id: 1, name: "Product 1", price: "$49.99", img: "url" },
-    { id: 2, name: "Product 2", price: "$59.99", img: "url" },
-    // Add more products here
-  ];
+  // const products = [
+  //   { id: 1, name: "Product 1", price: "$49.99", img: "url" },
+  //   { id: 2, name: "Product 2", price: "$59.99", img: "url" },
+  //   // Add more products here
+  // ];
 
   return (
     <div className="homepage-container">
@@ -41,7 +42,8 @@ const HomePage = () => {
       </header>
       <main className="main-container">
         <Carousel />
-        <section className="featured-products">
+        <Product />
+        {/* <section className="featured-products">
           <h2>Featured Products</h2>
           <div className="products-grid">
             {products.map((product) => (
@@ -53,7 +55,7 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );
