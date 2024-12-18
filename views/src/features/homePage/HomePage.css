@@ -213,9 +213,9 @@ header {
 
 .products-grid {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* grid-template-columns: repeat(2, 1fr); */
+  gap: 10px;
   /* margin-top: 20px; */
 }
 
@@ -223,8 +223,10 @@ header {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  aspect-ratio: 4/3;
 }
 
 .product-card:hover {
@@ -233,7 +235,9 @@ header {
 
 .product-card img {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
   margin-bottom: 10px;
 }
 
