@@ -26,7 +26,8 @@
     color: var(--red-color);
     width: 60px;
     font-size: 0.8em;
-    /* background-color: #fff; */
+    background-color: #fff;
+    cursor: pointer;
   }
 
   /* Profile Section */
