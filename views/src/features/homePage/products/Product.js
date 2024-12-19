@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Product = () => {
-  const [products, setProducts] = useState(null);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("http://localhost:3001/api/products/");
-      const data = await response.json();
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+const Product = ( {displayedProducts}) => {
 
   return (
     <div>
       <section className="featured-products">
         <h2>Featured Products</h2>
         <div className="products-grid">
-          {products && products.map((product) => (
+          {displayedProducts && displayedProducts.map((product) => (
             <Link to={`/product/${product.id}`} key={product.id}>
               <div className="product-card" >
                 <img src={product.image_url} alt="Product" />
