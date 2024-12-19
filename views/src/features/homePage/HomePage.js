@@ -1,15 +1,32 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { MdNotifications, MdSearch } from "react-icons/md";
 import Carousel from "../util/Carousel";
 import "./HomePage.css";
 import Product from "./products/Product";
 
 const HomePage = () => {
-  // const products = [
-  //   { id: 1, name: "Product 1", price: "$49.99", img: "url" },
-  //   { id: 2, name: "Product 2", price: "$59.99", img: "url" },
-  //   // Add more products here
-  // ];
+  const [products, setProducts] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState('');
+
+  const handleSearchQuery = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
+
+    const filtered = products.filter((product) => product.name.toLowerCase().includes(searchQuery));
+    setFilteredProducts(filtered);
+  }
+
+  const displayedProducts = searchQuery ? filteredProducts : products;
+
+
+  useEffect(() => {
+      const fetchProducts = async () => {
+        const response = await fetch("http://localhost:3001/api/products/");
+        const data = await response.json();
+        setProducts(data);
+      };
+      fetchProducts();
+    }, []);
 
   return (
     <div className="homepage-container">
@@ -22,6 +39,7 @@ const HomePage = () => {
           type="text"
           className="search-bar"
           placeholder="What are you looking for ?"
+          onChange={handleSearchQuery}
         />
         <button type="button" className="search-button">
           <MdSearch className="search-icon" />
@@ -42,20 +60,7 @@ const HomePage = () => {
       </header>
       <main className="main-container">
         <Carousel />
-        <Product />
-        {/* <section className="featured-products">
-          <h2>Featured Products</h2>
-          <div className="products-grid">
-            {products.map((product) => (
-              <div className="product-card" key={product.id}>
-                <img src={product.img} alt="Product" />
-                <h3>{product.name}</h3>
-                <p>{product.price}</p>
-                <button className="add-to-cart-button">Add to Cart</button>
-              </div>
-            ))}
-          </div>
-        </section> */}
+        <Product displayedProducts={displayedProducts}/>
       </main>
     </div>
   );
