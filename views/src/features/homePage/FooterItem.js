@@ -1,10 +1,8 @@
-import React from 'react'
-
-const FooterItem = ( { icon: Icon, size, label, onClick }) => {
+const FooterItem = ( { icon: Icon, size, label, onClick, isActive }) => {
   return (
     <div className="footer-item" onClick={onClick} style={{ cursor: "pointer" }}>
-      <Icon  size={size} />
-      <span>{label}</span>
+      <Icon  size={size} className={isActive ? "footer-icon" : "icon-inactive"} />
+      {/* <span>{label}</span> */}
     </div>
   )
 }
