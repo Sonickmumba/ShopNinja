@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSettings, FiChevronRight, FiMessageSquare } from "react-icons/fi";
-import { FaRegCircleQuestion } from "react-icons/fa6";
+import { FaRegCircleQuestion, FaCircleUser } from "react-icons/fa6";
 import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -14,11 +14,15 @@ const User = ({ handleSignout }) => {
   const { isSignedIn, userProfile } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  const handleBackClick = () => {
+    navigate(-1);
+  }
+
   return (
     <div className="user-component">
       <div className="user-profile">
         <div className="user-back">
-          <MdKeyboardArrowLeft size={40} /> <h3>My Profile</h3>
+          <MdKeyboardArrowLeft size={40} onClick={handleBackClick}/> <h3>My Profile</h3>
         </div>
         <button type="button" className="signout-button" onClick={handleSignout}>
           Sign out
@@ -27,11 +31,11 @@ const User = ({ handleSignout }) => {
       {isSignedIn ? (
         <div className="profile-section">
           <div className="pro-con">
-            <img
-              src={userProfile?.image || "default-avatar.png"}
+            {userProfile?.image_url ? (<img
+              src={userProfile?.image_url || "default-avatar.png"}
               alt="User Profile"
               className="profile-picture"
-            />
+            />) : (<FaCircleUser className="profile-picture" size={50} color="gray" />)}
             <div className="profile-div">
               <p className="user-name">{userProfile?.name || "Guest User"}</p>
               <p>{userProfile?.email || "No email"}</p>
