@@ -108,7 +108,7 @@ header {
   display: none;
 }
 
-.categories a:hover {
+.categories a:hover, .categories a.active {
   background-color: var(--red-color);
   color: white;
 }
