@@ -1,0 +1,118 @@
+.skeleton-loader {
+  background: #f2f2f2;
+  color: #999;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
+.product-details-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .product-left-review-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .back-button {
+    margin-bottom: 20px;
+  }
+
+  .image-container {
+    width: 100%;
+    height: 400px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-name-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .product-price {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .product-description {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .product-review {
+    color: var(--red-color);
+  }
+
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    /* border: 1px solid var(--gray-color); */
+    width: 100px;
+  }
+
+  /* #quantity {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+  } */
+  
+  .quantity-button {
+    background-color: var(--blue-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .quantity-display {
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 40px;
+    text-align: center;
+  }
+  
+  
+  .add-to-cart-button {
+    width: 100%;
+    background-color: var(--red-color);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #c03d25;
+  }
+  

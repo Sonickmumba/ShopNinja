@@ -91,6 +91,7 @@ app.get("/status", (req, res) => {
         if (err) {
           return res.status(403).json({ message: "Invalid token" });
         }
+        console.log(user)
         res.json({ message: "Authenticated", user: user });
       });
     } else {

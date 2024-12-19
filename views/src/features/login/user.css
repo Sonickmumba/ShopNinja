@@ -3,14 +3,49 @@
     flex-direction: column;
     padding: 16px;
     font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: var(--white-color);
+  }
+
+  .user-profile {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .user-back {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .signout-button {
+    border: 1px dotted var(--red-color);
+    border-radius: 8px;
+    color: var(--red-color);
+    width: 60px;
+    font-size: 0.8em;
+    background-color: #fff;
+    cursor: pointer;
   }
 
   /* Profile Section */
 .profile-section {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: var(--input-color);
+  }
+
+  .pro-con {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   
   .profile-picture {
@@ -52,6 +87,10 @@
   .sign-in-button:hover {
     background-color: #0056b3;
   }
+
+  .account {
+    margin: 20px 0;
+  }
   
   /* Bottom Section */
   .user-options {
@@ -59,18 +98,6 @@
     flex-direction: column;
     gap: 16px;
   }
-  
-  /* .user-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    padding: 8px;
-    color: #333;
-    cursor: pointer;
-    background-color: var(--white-color);
-  }
-   */
 
    .message-arrow {
     display: flex;
@@ -85,9 +112,7 @@
     align-items: center;
     padding: 10px;
     font-size: 1.2rem;
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
     transition: background 0.3s;
   }

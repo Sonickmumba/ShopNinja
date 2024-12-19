@@ -1,14 +1,33 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Carousel from "../util/Carousel";
-// import { FiMenu, FiShoppingCart, FiUser } from "react-icons/fi";
-// import checkAuthStatus from "../../utils/checkAuthStatus";
+import React, { useState, useEffect } from "react";
 import { MdNotifications, MdSearch } from "react-icons/md";
-// import Footer from "./Footer";
 import Carousel from "../util/Carousel";
 import "./HomePage.css";
+import Product from "./products/Product";
 
 const HomePage = () => {
+  const [products, setProducts] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState('');
+
+  const handleSearchQuery = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
+
+    const filtered = products.filter((product) => product.name.toLowerCase().includes(searchQuery));
+    setFilteredProducts(filtered);
+  }
+
+  const displayedProducts = searchQuery ? filteredProducts : products;
+
+
+  useEffect(() => {
+      const fetchProducts = async () => {
+        const response = await fetch("http://localhost:3001/api/products/");
+        const data = await response.json();
+        setProducts(data);
+      };
+      fetchProducts();
+    }, []);
+
   return (
     <div className="homepage-container">
       <header>
@@ -20,6 +39,7 @@ const HomePage = () => {
           type="text"
           className="search-bar"
           placeholder="What are you looking for ?"
+          onChange={handleSearchQuery}
         />
         <button type="button" className="search-button">
           <MdSearch className="search-icon" />
@@ -40,56 +60,7 @@ const HomePage = () => {
       </header>
       <main className="main-container">
         <Carousel />
-        <section className="featured-products">
-          <h2>Featured Products</h2>
-          <div className="products-grid">
-            {/* Dynamically render product cards */}
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-            {/* Repeat for other products */}
-
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-
-            <div className="product-card">
-              <img src="https://via.placeholder.com/150" alt="Product" />
-              <h3>Product Name</h3>
-              <p>$49.99</p>
-              <button className="add-to-cart-button">Add to Cart</button>
-            </div>
-
-          </div>
-          
-        </section>
+        <Product displayedProducts={displayedProducts}/>
       </main>
     </div>
   );
