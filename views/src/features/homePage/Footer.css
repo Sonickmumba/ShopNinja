@@ -6,6 +6,7 @@
   background-color: #fff;
   padding: 10px 0;
   border-top: 1px solid #ddd;
+  border-radius: 20px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -24,8 +25,14 @@
   transition: color 0.2s ease;
 }
 
-.footer-item:hover {
-  color: #000;
+.icon-inactive {
+  color: gray;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.footer-icon {
+  color: var(--red-color);
 }
 
 @media screen and (max-width: 600px) {
