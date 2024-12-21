@@ -13,7 +13,6 @@ const ProductDetails = ( {addToCart, message, setAddToCartMessage}) => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -48,12 +47,7 @@ const ProductDetails = ( {addToCart, message, setAddToCartMessage}) => {
   
     try {
       const itemToAdd = {
-        id: product.id,
-        quantity,
-        price: product.price,
-        name: product.name,
-        description: product.description,
-        image_url: product.image_url,
+        ...product, quantity,
       };
   
       addToCart(itemToAdd);
