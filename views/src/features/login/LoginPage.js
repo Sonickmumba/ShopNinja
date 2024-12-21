@@ -45,7 +45,6 @@ function LoginPage() {
   
 
   const handleGoogleLogin = () => {
-    console.log("Google login clicked");
     window.location.href = 'http://localhost:3001/auth/google';
   };
 
@@ -61,7 +60,6 @@ function LoginPage() {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log('Go to sign up');
     navigate('/signup')
   }
 
