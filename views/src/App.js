@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./features/login/LoginPage";
 import Signup from "./features/login/Signup";
 import User from "./features/login/User";
-// import ProtectedRoute from "./features/util/ProtectedRoute";
+import ProtectedRoute from "./features/util/ProtectedRoute";
 import "./App.css";
 import Footer from "./features/homePage/Footer";
 import ProductDetails from "./features/homePage/products/ProductDetails";
@@ -111,7 +111,7 @@ function App() {
             />
           }
         />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/cart" element={<ProtectedRoute><Cart cartItems={cartItems} /></ProtectedRoute>} />
       </Routes>
       <Footer fetchUserProfile={fetchUserProfile} />
     </Router>
