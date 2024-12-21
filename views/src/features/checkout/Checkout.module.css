@@ -1,0 +1,123 @@
+.paymentContainer {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    height: 100vh;
+    position: relative;
+    z-index: 400;
+  }
+  
+  .paymentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .backButton,
+  .favoritesButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .deliverySection,
+  .paymentMethods,
+  .savedOptions,
+  .bankOffers {
+    margin-bottom: 20px;
+  }
+  
+  .deliverySection h3,
+  .paymentMethods h3,
+  .savedOptions h3,
+  .bankOffers h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .address {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .addAddressButton {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .paymentMethods ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .paymentMethods li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .savedOption {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .savedCardLabel {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .visa {
+    background: #f0f0f0;
+    padding: 4px 6px;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+  .cardNumber {
+    color: #777;
+  }
+  
+  .cardName {
+    color: #333;
+  }
+  
+  .bankOffers p {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .showMore {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .payFooter {
+    text-align: center;
+  }
+  
+  .payButton {
+    background: #ff4500;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 80%;
+  }
+  
+  .payButton:hover {
+    background: #e63900;
+  }
+  

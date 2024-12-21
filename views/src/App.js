@@ -14,6 +14,7 @@ import "./App.css";
 import Footer from "./features/homePage/Footer";
 import ProductDetails from "./features/homePage/products/ProductDetails";
 import Cart from "./features/cart/Cart";
+import Checkout from "./features/checkout/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,14 +104,14 @@ function App() {
             />
           }
         />
-        {/* <Route
-          path="/checkout"
+        <Route
+          path="/payment"
           element={
             <ProtectedRoute>
               <Checkout />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/user"
           element={

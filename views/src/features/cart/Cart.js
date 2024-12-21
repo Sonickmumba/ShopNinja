@@ -108,7 +108,7 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
               <span>Total</span>
               <span>R {total.toFixed(2)}</span>
             </div>
-            <button className={styles.paymentButton}>Proceed to payment</button>
+            <button className={styles.paymentButton} onClick={()=> navigate("/payment")}>Proceed to payment</button>
           </div>
         </>
       )}
