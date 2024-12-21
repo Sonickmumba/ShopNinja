@@ -1,0 +1,108 @@
+.cartContainer {
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 16px;
+  }
+  
+  .itemImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  
+  .itemDetails {
+    flex: 1;
+  }
+  
+  .itemName {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .itemBrand {
+    color: gray;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .removeButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+  }
+  
+  .couponSection {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+  }
+  
+  .couponInput {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .couponButton {
+    padding: 8px;
+    margin-left: 8px;
+    background-color: #f04;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .priceDetails {
+    margin-top: 16px;
+  }
+  
+  .priceRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .total {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .paymentButton {
+    width: 100%;
+    background-color: #f04;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  
