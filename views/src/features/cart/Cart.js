@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { FiChevronLeft } from "react-icons/fi";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Cart.module.css";
 
 const Cart = ({ cartItems, handleRemoveBtn }) => {
@@ -23,7 +23,7 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
       calculatedSubTotal + shipping + tax - couponDiscount;
     setTotal(calculatedTotal);
   }, [cartItems, shipping, tax, couponDiscount]);
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   //   const handleBack = () => {
   //     navigate(-1);
@@ -44,8 +44,7 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
           <button
             className={styles.shopButton}
             onClick={() => {
-              // Navigate to the shopping page (implement navigation logic here)
-              console.log("Redirecting to shop...");
+              navigate("/")
             }}
           >
             Continue Shopping
