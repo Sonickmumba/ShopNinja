@@ -73,13 +73,13 @@ function App() {
 
   const handleRemoveBtn = (e) => {
     e.preventDefault();
-    console.log(e.target.id);
-    const id = parseInt(e.target.id);
+    const id = parseInt(e.target.id, 10);
 
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
-    console.log(updatedCartItems);
     setCartItems(updatedCartItems);
   };
+
+  console.log(cartItems)
 
   useEffect(() => {
     fetchUserProfile();
