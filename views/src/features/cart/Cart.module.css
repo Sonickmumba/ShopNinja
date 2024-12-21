@@ -1,6 +1,7 @@
 .cartContainer {
-    width: 90%;
+    width: 100%;
     max-width: 400px;
+    height: 100vh;
     margin: auto;
     background-color: #fff;
     border-radius: 10px;
@@ -12,7 +13,36 @@
   .header {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
+    margin: 30px 0 16px 0;
+  }
+
+  .emptyCartMessage {
+    text-align: center;
+    margin: 20px;
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .shopButton {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .shopButton:hover {
+    background-color: #e64a19;
+  }
+  
+
+  .cartCardContainer {
+    height: 450px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
   }
   
   .cartItem {
@@ -21,6 +51,7 @@
     margin-bottom: 16px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 16px;
+    height: auto;
   }
   
   .itemImage {
