@@ -1,51 +1,11 @@
-// // ProductDetails.js
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import "./ProductDetails.css";
-
-// const ProductDetails = () => {
-//   const { id } = useParams();
-//   const [product, setProduct] = useState(null);
-
-//   useEffect(() => {
-//     const fetchProduct = async () => {
-//       const response = await fetch(`http://localhost:3001/api/products/${id}`);
-//       const data = await response.json();
-//       setProduct(data);
-//     };
-//     fetchProduct();
-//   }, [id]);
-
-//   const handleAddToCart = () => {
-//     alert(`${product.name} added to cart!`);
-//   };
-
-//   if (!product) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return (
-//     <div className="product-details-container">
-//       <img src={product.image_url} alt={product.name} className="product-image" />
-//       <h1>{product.name}</h1>
-//       <p className="product-price">R{product.price}</p>
-//       <p className="product-description">{product.description}</p>
-//       <button className="add-to-cart-button" onClick={handleAddToCart}>
-//         Add to Cart
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default ProductDetails;
-
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
-import { FiChevronLeft, FiMessageCircle } from "react-icons/fi";
+import { FiChevronLeft } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import "./ProductDetails.css";
 
-const ProductDetails = () => {
+const ProductDetails = ( {addToCart, message, setAddToCartMessage}) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -53,6 +13,7 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -74,9 +35,31 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    alert(`${quantity} x ${product.name} added to cart!`);
+  const handleAddToCart = async () => {
+    if (!product) {
+      toast.error("Product details are missing!");
+      return;
+    }
+  
+    if (quantity <= 0) {
+      toast.error("Invalid quantity. Must be greater than 0.");
+      return;
+    }
+  
+    try {
+      const itemToAdd = {
+        id: product.id,
+        quantity,
+        name: product.name,
+        image_url: product.image_url,
+      };
+  
+      addToCart(itemToAdd);
+    } catch (error) {
+      return new Error('Not added')
+    }
   };
+
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -132,6 +115,7 @@ const ProductDetails = () => {
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Add to Cart
           </button>
+          {message && <p>{message}</p>}
         </div>
       </div>
     </div>
