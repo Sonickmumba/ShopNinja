@@ -50,7 +50,9 @@ const ProductDetails = ( {addToCart, message, setAddToCartMessage}) => {
       const itemToAdd = {
         id: product.id,
         quantity,
+        price: product.price,
         name: product.name,
+        description: product.description,
         image_url: product.image_url,
       };
   
