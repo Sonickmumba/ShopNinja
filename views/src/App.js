@@ -71,6 +71,16 @@ function App() {
     setTimeout(() => setAddToCartMessage(""), 3000);
   };
 
+  const handleRemoveBtn = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+    const id = parseInt(e.target.id);
+
+    const updatedCartItems = cartItems.filter((item) => item.id !== id);
+    console.log(updatedCartItems);
+    setCartItems(updatedCartItems);
+  };
+
   useEffect(() => {
     fetchUserProfile();
   }, []);
@@ -111,7 +121,14 @@ function App() {
             />
           }
         />
-        <Route path="/cart" element={<ProtectedRoute><Cart cartItems={cartItems} /></ProtectedRoute>} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart cartItems={cartItems} handleRemoveBtn={handleRemoveBtn} />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer fetchUserProfile={fetchUserProfile} />
     </Router>
