@@ -18,7 +18,6 @@ function Footer( { fetchUserProfile }) {
 
   const handleCategoriesClick = () => {
     setActiveItem("Categories");
-    console.log('clicked cartegories button')
   };
 
   const handleUserClick = () => {
@@ -35,7 +34,6 @@ function Footer( { fetchUserProfile }) {
   const handleCartClick = () => {
     setActiveItem("Cart");
     navigate("/cart");
-    console.log('clicked cart')
   }
   return (
     <div className="footer">
