@@ -1,37 +1,44 @@
-import React from 'react';
+import React from "react";
+import { FiChevronRight } from "react-icons/fi";
 import styles from "./Checkout.module.css";
 import { useNavigate } from "react-router-dom";
+import DeliveryAddress from "./DeliveryAddress";
 
 const Checkout = () => {
-    const navigate = useNavigate();
-//   return (
-//     <div>Checkout</div>
-//   )
+  // implement fetch of user address from the api.
+  const userAddress = "Jubilee Garden, Bandan Gali, Gujarat";
+  const navigate = useNavigate();
 
-return (
+  return (
     <div className={styles.paymentContainer}>
       {/* Header */}
       <header className={styles.paymentHeader}>
-        <button className={styles.backButton} onClick={() => navigate(-1)}>←</button>
+        <button className={styles.backButton} onClick={() => navigate(-1)}>
+          ←
+        </button>
         <h2>Payment</h2>
         <button className={styles.favoritesButton}>♡</button>
       </header>
 
       {/* Delivery Address */}
-      <section className={styles.deliverySection}>
-        <h3>Delivery Address</h3>
-        <p className={styles.address}>Jubilee Garden, Bandan Gali, Gujarat</p>
-        <button className={styles.addAddressButton}>Add address</button>
-      </section>
+      <DeliveryAddress address={userAddress} />
 
       {/* Payment Methods */}
       <section className={styles.paymentMethods}>
         <h3>Payment method</h3>
         <ul>
-          <li>UPI Methods</li>
-          <li>Credit card/ Debit card</li>
-          <li>Net Banking</li>
-          <li>Cash on delivery</li>
+          <li>
+            <FiChevronRight /> UPI Methods
+          </li>
+          <li>
+            <FiChevronRight /> Credit card/ Debit card
+          </li>
+          <li>
+            <FiChevronRight /> Net Banking
+          </li>
+          <li>
+            <FiChevronRight /> Cash on delivery
+          </li>
         </ul>
       </section>
 
@@ -41,7 +48,7 @@ return (
         <div className={styles.savedOption}>
           <input type="radio" name="payment" id="saved-card" />
           <label htmlFor="saved-card" className={styles.savedCardLabel}>
-            Citi Credit card <span className={styles.visa}>VISA</span>
+            FNB Credit card <span className={styles.visa}>VISA</span>
             <span className={styles.cardNumber}>****7689</span>
             <span className={styles.cardName}>John Albert</span>
           </label>
@@ -51,7 +58,7 @@ return (
       {/* Bank Offers */}
       <section className={styles.bankOffers}>
         <h3>Bank offers</h3>
-        <p>5% Unlimited cashback on Citi bank credit card. TCA</p>
+        <p>5% Unlimited cashback on FNB bank credit card. TCA</p>
         <button className={styles.showMore}>Show more</button>
       </section>
 
@@ -61,6 +68,6 @@ return (
       </div>
     </div>
   );
-}
+};
 
-export default Checkout
+export default Checkout;
