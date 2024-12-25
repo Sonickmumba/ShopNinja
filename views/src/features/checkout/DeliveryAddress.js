@@ -57,8 +57,6 @@ const DeliveryAddress = ({ address }) => {
       });
 
       if (response.status === 409) {
-        // const response = await fetch(`http://localhost:3001/api/user/address/${userId}`, {method: "GET", headers: {"Content-Type": "application/json"}});
-        // console.log(response)
         alert("Address already exists. Please enter a new address.");
         return;
       }
