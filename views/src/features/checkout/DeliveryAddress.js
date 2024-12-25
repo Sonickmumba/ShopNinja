@@ -69,7 +69,6 @@ const DeliveryAddress = ({ address }) => {
       }
   
       const result = await response.json();
-      console.log(result.message);
   
       // Close the modal and reset the form
       closeModal();
