@@ -23,7 +23,8 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
       calculatedSubTotal + shipping + tax - couponDiscount;
     setTotal(calculatedTotal);
   }, [cartItems, shipping, tax, couponDiscount]);
-    const navigate = useNavigate();
+  
+  const navigate = useNavigate();
 
   //   const handleBack = () => {
   //     navigate(-1);
@@ -44,7 +45,7 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
           <button
             className={styles.shopButton}
             onClick={() => {
-              navigate("/")
+              navigate("/");
             }}
           >
             Continue Shopping
@@ -108,7 +109,12 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
               <span>Total</span>
               <span>R {total.toFixed(2)}</span>
             </div>
-            <button className={styles.paymentButton} onClick={()=> navigate("/payment")}>Proceed to payment</button>
+            <button
+              className={styles.paymentButton}
+              onClick={() => navigate("/payment")}
+            >
+              Proceed to payment
+            </button>
           </div>
         </>
       )}
