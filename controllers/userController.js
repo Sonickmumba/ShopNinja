@@ -61,10 +61,32 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const retriveUserAddress = async (req, res) => {
+  // const user_id = parseInt(req.params.id, 10);
+
+  try {
+    const user_id = parseInt(req.params.id, 10);
+    // if (req.user.id !== user_id) {
+    //   return res.status(403).json({ message: "Access denied" });
+    // }
+
+    const userAddress = await db.getUserAddress(user_id);
+
+    if (!userAddress) {
+      res.status(400).json({ message: "User address not found" })
+    }
+    res.status(200).json(userAddress);
+  } catch (error) {
+    console.error("Error retrieving user address:", error.message);
+    res.status(500).json({error: 'Internal Server Error'})
+  }
+}
+
 module.exports = {
   getUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
+  retriveUserAddress,
 };
