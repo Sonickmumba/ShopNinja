@@ -8,7 +8,6 @@ import FooterItem from "./FooterItem";
 import "./Footer.css";
 
 function Footer() {
-  // const { isSignedIn } = useSelector((state) => state.user);
   const [activeItem, setActiveItem] = useState("Home");
   const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ function Footer() {
   const handleUserClick = () => {
     setActiveItem("You");
     navigate("/user");
-    // fetchUserProfile()
   };
 
   const handleSearchClick = () => {
