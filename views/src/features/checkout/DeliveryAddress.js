@@ -51,7 +51,7 @@ const DeliveryAddress = ({ address }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: userId, // Replace with the actual user ID
+          user_id: userId,
           ...formData
         }),
       });
