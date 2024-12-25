@@ -7,7 +7,8 @@ import { FiUser } from "react-icons/fi";
 import FooterItem from "./FooterItem";
 import "./Footer.css";
 
-function Footer( { fetchUserProfile }) {
+function Footer() {
+  // const { isSignedIn } = useSelector((state) => state.user);
   const [activeItem, setActiveItem] = useState("Home");
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ function Footer( { fetchUserProfile }) {
   const handleUserClick = () => {
     setActiveItem("You");
     navigate("/user");
-    fetchUserProfile()
+    // fetchUserProfile()
   };
 
   const handleSearchClick = () => {
