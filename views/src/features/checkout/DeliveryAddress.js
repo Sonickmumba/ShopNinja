@@ -5,28 +5,33 @@ import styles from "./Checkout.module.css";
 
 const DeliveryAddress = ({ address }) => {
   const { isSignedIn, userProfile } = useSelector((state) => state.user);
-  const [address_line1, setAddress_line1] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
+  console.log(isSignedIn);
+
+  const [formData, setFormData] = useState({
+    address_line1: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
+  });
 
   const [showModal, setShowModal] = useState(false);
-  // const { id: userId } = useParams();
-  let userId;
-  
-  const handleAddAddress = () => {
-    setShowModal(true);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => (
+      { ...prev, [name]: value }
+    ))
+  }
+  
+  const handleAddAddress = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   const saveAddress = async (e) => {
     e.preventDefault();
-    // Implement the save the address logic (e.g., API call)
-    if (!address_line1 || !city || !state || !postalCode || !country) {
+
+    if (Object.values(formData).some((field) => !field)) {
       alert("All fields are required!");
       return;
     }
@@ -34,11 +39,12 @@ const DeliveryAddress = ({ address }) => {
     if (!isSignedIn) {
       alert("You are not signed in")
       return;
-    } else {
-      userId = userProfile.id;
     }
 
+    const userId = userProfile.id;
+
     try {
+      setIsLoading(true);
       const response = await fetch("http://localhost:3001/api/user/address", {
         method: "POST",
         headers: {
@@ -46,19 +52,13 @@ const DeliveryAddress = ({ address }) => {
         },
         body: JSON.stringify({
           user_id: userId, // Replace with the actual user ID
-          address_line1,
-          city,
-          state,
-          postal_code: postalCode,
-          country,
+          ...formData
         }),
       });
 
-      console.log(response);
-
       if (response.status === 409) {
-        const response = await fetch(`http://localhost:3001/api/user/address/${userId}`, {method: "GET", headers: {"Content-Type": "application/json"}});
-        console.log(response)
+        // const response = await fetch(`http://localhost:3001/api/user/address/${userId}`, {method: "GET", headers: {"Content-Type": "application/json"}});
+        // console.log(response)
         alert("Address already exists. Please enter a new address.");
         return;
       }
@@ -73,17 +73,18 @@ const DeliveryAddress = ({ address }) => {
   
       // Close the modal and reset the form
       closeModal();
-      setAddress_line1('');
-      setCity('');
-      setState('');
-      setPostalCode('');
-      setCountry('');
+      setFormData({ address_line1: "", city: "", state: "", postalCode: "", country: "" });
+      // setAddress_line1('');
+      // setCity('');
+      // setState('');
+      // setPostalCode('');
+      // setCountry('');
+      alert("New address saved!");
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    setShowModal(false);
-    alert("New address saved!");
   };
 
   return (
@@ -114,7 +115,7 @@ const DeliveryAddress = ({ address }) => {
         </div>
       )} */}
 
-      {showModal && (
+      {/* {showModal && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h3>Add a New Address</h3>
@@ -183,6 +184,40 @@ const DeliveryAddress = ({ address }) => {
                   className={styles.cancelButton}
                   onClick={closeModal}
                 >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )} */}
+
+
+
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3 id="modal-title">Add a New Address</h3>
+            <form onSubmit={saveAddress}>
+              {["address_line1", "city", "state", "postalCode", "country"].map((field) => (
+                <div className={styles.formGroup} key={field}>
+                  <label htmlFor={field}>{field.replace(/_/g, " ")}</label>
+                  <input
+                    type="text"
+                    id={field}
+                    name={field}
+                    className={styles.input}
+                    placeholder={`Enter ${field.replace(/_/g, " ")}`}
+                    value={formData[field]}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              ))}
+              <div className={styles.modalActions}>
+                <button type="submit" className={styles.saveButton} disabled={isLoading}>
+                  {isLoading ? "Saving..." : "Save"}
+                </button>
+                <button type="button" className={styles.cancelButton} onClick={closeModal}>
                   Cancel
                 </button>
               </div>
