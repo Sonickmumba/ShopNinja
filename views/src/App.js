@@ -22,24 +22,6 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [addToCartMessage, setAddToCartMessage] = useState("");
 
-  const fetchUserProfile = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/status", {
-        credentials: "include",
-      });
-
-      const data = await response.json();
-
-      if (data?.user) {
-        dispatch(signIn(data.user));
-      } else {
-        dispatch(signOut());
-      }
-    } catch (error) {
-      console.error("Error checking sign-in status:", error);
-    }
-  };
-
   const handleSignout = (e) => {
     e.preventDefault();
     dispatch(signOut());
@@ -79,12 +61,6 @@ function App() {
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCartItems);
   };
-
-  console.log(cartItems)
-
-  useEffect(() => {
-    fetchUserProfile();
-  }, []);
 
   return (
     // <div className="App">
@@ -131,7 +107,7 @@ function App() {
           }
         />
       </Routes>
-      <Footer fetchUserProfile={fetchUserProfile} />
+      <Footer />
     </Router>
     // </div>
   );
