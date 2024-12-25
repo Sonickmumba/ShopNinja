@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FiChevronRight } from "react-icons/fi";
 import styles from "./Checkout.module.css";
 import { useNavigate } from "react-router-dom";
 import DeliveryAddress from "./DeliveryAddress";
+// const userController = require("../../../../controllers/userController");
+// import retriveUserAddress from "../../../../controllers/userController";
 
 const Checkout = () => {
   // implement fetch of user address from the api.
+
   const userAddress = "Jubilee Garden, Bandan Gali, Gujarat";
   const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ const Checkout = () => {
 
       {/* Pay Button */}
       <div className={styles.payFooter}>
-        <button className={styles.payButton}>Pay ₹5,199</button>
+        <button className={styles.payButton}>Pay R 5,199</button>
       </div>
     </div>
   );
