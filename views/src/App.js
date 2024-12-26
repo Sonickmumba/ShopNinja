@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "./features/login/userSlice";
 import signout from "./features/util/signout";
@@ -59,6 +59,29 @@ function App() {
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCartItems);
   };
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/status", {
+          credentials: "include",
+        });
+  
+        const data = await response.json();
+  
+        if (data?.user) {
+          dispatch(signIn(data.user))
+        } else {
+          dispatch(signOut())
+        }
+      } catch (error) {
+        console.error("Error checking sign-in status:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [dispatch]);
+
 
   return (
     // <div className="App">
