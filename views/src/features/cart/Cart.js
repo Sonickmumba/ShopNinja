@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { FiChevronLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
 import styles from "./Cart.module.css";
 
 const Cart = ({ cartItems, handleRemoveBtn }) => {
@@ -9,6 +10,9 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
   const [tax, setTax] = useState(30); // Fixed tax
   const [couponDiscount, setCouponDiscount] = useState(100); // Fixed coupon discount
   const [total, setTotal] = useState(0);
+
+  const navigate = useNavigate();
+  
 
   // Calculate Subtotal and Total Whenever Cart Updates
   useEffect(() => {
@@ -24,17 +28,6 @@ const Cart = ({ cartItems, handleRemoveBtn }) => {
     setTotal(calculatedTotal);
   }, [cartItems, shipping, tax, couponDiscount]);
   
-  const navigate = useNavigate();
-
-  //   const handleBack = () => {
-  //     navigate(-1);
-  //   };
-  //   const totalAmount =
-  //     cartItems &&
-  //     cartItems.reduce(
-  //       (amount, item) => amount + Number(item.price) * item.quantity,
-  //       0
-  //     );
 
   return (
     <div className={styles.cartContainer}>
