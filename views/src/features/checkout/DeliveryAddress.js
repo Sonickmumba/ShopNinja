@@ -11,7 +11,7 @@ const DeliveryAddress = ({ address }) => {
     address_line1: "",
     city: "",
     state: "",
-    postalCode: "",
+    postal_code: "",
     country: "",
   });
 
@@ -42,6 +42,7 @@ const DeliveryAddress = ({ address }) => {
     }
 
     const userId = userProfile.id;
+    console.log(userId)
 
     try {
       setIsLoading(true);
@@ -70,7 +71,7 @@ const DeliveryAddress = ({ address }) => {
   
       // Close the modal and reset the form
       closeModal();
-      setFormData({ address_line1: "", city: "", state: "", postalCode: "", country: "" });
+      setFormData({ address_line1: "", city: "", state: "", postal_code: "", country: "" });
       // setAddress_line1('');
       // setCity('');
       // setState('');
@@ -196,7 +197,7 @@ const DeliveryAddress = ({ address }) => {
           <div className={styles.modalContent}>
             <h3 id="modal-title">Add a New Address</h3>
             <form onSubmit={saveAddress}>
-              {["address_line1", "city", "state", "postalCode", "country"].map((field) => (
+              {["address_line1", "city", "state", "postal_code", "country"].map((field) => (
                 <div className={styles.formGroup} key={field}>
                   <label htmlFor={field}>{field.replace(/_/g, " ")}</label>
                   <input
