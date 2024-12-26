@@ -34,6 +34,7 @@ function Footer() {
     setActiveItem("Cart");
     navigate("/cart");
   }
+  
   return (
     <div className="footer">
       <FooterItem icon={AiOutlineHome} size={30}  label="Home" onClick={handleHomeClick} isActive={activeItem === "Home"}/>
