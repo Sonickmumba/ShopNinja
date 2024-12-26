@@ -25,8 +25,8 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { name, email } = req.body;
-    const userId = await db.createUser(name, email);
-    res.status(201).json({ message: 'User added successfully', userId });
+    const user = await db.createUser(name, email);
+    res.status(201).json({ message: 'User added successfully', user });
   } catch (err) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
