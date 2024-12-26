@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { signIn } from "./userSlice";
 
 function Signup() {
@@ -12,7 +12,7 @@ function Signup() {
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,8 +42,8 @@ function Signup() {
       console.log(response.data.user);
 
       if (response.data.success) {
+        // dispatch(signIn(response.data.user));
         navigate("/home");
-        dispatch(signIn(response.data.user))
       }
     } catch (error) {
       console.log(error.response);
