@@ -101,8 +101,8 @@ CREATE TABLE cart_items (
     id SERIAL PRIMARY KEY,
     cart_id INT REFERENCES carts(id) ON DELETE CASCADE,
     product_id INT REFERENCES products(id),
-    quantity INT NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

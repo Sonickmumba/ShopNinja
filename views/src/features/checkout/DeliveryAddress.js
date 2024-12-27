@@ -5,7 +5,6 @@ import styles from "./Checkout.module.css";
 
 const DeliveryAddress = ({ address }) => {
   const { isSignedIn, userProfile } = useSelector((state) => state.user);
-  console.log(isSignedIn);
 
   const [formData, setFormData] = useState({
     address_line1: "",
