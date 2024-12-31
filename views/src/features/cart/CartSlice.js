@@ -13,7 +13,7 @@ export const getCart = createAsyncThunk('cart/getCart', async (userId) => {
 export const addItemToCart = createAsyncThunk(
   'cart/addItemToCart',
   async (itemData) => {
-    const response = await fetch('http://localhost:5000/api/cart/item', {
+    const response = await fetch('http://localhost:3001/api/cart/add-item', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,23 +60,8 @@ export const removeItemFromCart = createAsyncThunk(
   }
 );
 
-export const syncCart = createAsyncThunk('cart/syncCart', async (cartData) => {
-  const response = await fetch('http://localhost:5000/api/cart/sync', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(cartData),
-  });
-  if (response.ok) {
-    return response.json();
-  } else {
-    throw new Error('Failed to sync cart');
-  }
-});
-
 export const clearCart = createAsyncThunk('cart/clearCart', async (cartId) => {
-  const response = await fetch(`http://localhost:5000/api/cart/clear/${cartId}`, {
+  const response = await fetch(`http://localhost:5000/api/cart/${cartId}`, {
     method: 'DELETE',
   });
   if (response.ok) {
@@ -114,17 +99,17 @@ const cartSlice = createSlice({
         }
       })
       .addCase(updateItemQuantity.fulfilled, (state, action) => {
-        const item = state.cart.items.find((item) => item.id === action.payload.id);
+        const item = state.cart.items.find((item) => item.cart_item_id === action.payload.id);
         if (item) {
           item.quantity = action.payload.quantity;
         }
       })
       .addCase(removeItemFromCart.fulfilled, (state, action) => {
-        state.cart.items = state.cart.items.filter((item) => item.id !== action.payload);
+        state.cart.items = state.cart.items.filter((item) => item.cart_item_id !== action.payload);
       })
-      .addCase(syncCart.fulfilled, (state, action) => {
-        state.cart = action.payload;
-      })
+    //   .addCase(syncCart.fulfilled, (state, action) => {
+    //     state.cart = action.payload;
+    //   })
       .addCase(clearCart.fulfilled, (state, action) => {
         state.cart.items = [];
       });
