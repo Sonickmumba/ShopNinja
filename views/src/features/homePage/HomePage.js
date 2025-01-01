@@ -4,7 +4,7 @@ import Carousel from "../util/Carousel";
 import "./HomePage.css";
 import Product from "./products/Product";
 
-const HomePage = () => {
+const HomePage = ( { addToCart }) => {
   const [products, setProducts] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState('');
@@ -60,7 +60,7 @@ const HomePage = () => {
       </header>
       <main className="main-container">
         <Carousel />
-        <Product displayedProducts={displayedProducts}/>
+        <Product displayedProducts={displayedProducts} addToCart={addToCart}/>
       </main>
     </div>
   );
