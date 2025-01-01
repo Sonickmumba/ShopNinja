@@ -87,10 +87,10 @@ function App() {
     // <div className="App">
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage addToCart={addToCart}/>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<HomePage/>} />
         <Route
           path="/product/:id"
           element={
