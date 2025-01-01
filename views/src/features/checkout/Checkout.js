@@ -23,9 +23,7 @@ const Checkout = () => {
       const data = await response.json();
 
       const userAddress = `${data.address_line1}, ${data.city}, ${data.state}, ${data.postal_code}, ${data.country}`;
-      console.log(userAddress)
       setAddress(userAddress)
-      console.log(response)
     } catch (error) {
       console.error("Error fetching user address:", error);
     }
