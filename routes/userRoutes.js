@@ -296,4 +296,17 @@ router.get("/logout", (req, res) => {
   });
 });
 
+// GET user address
+router.get("/user/address/:id", userController.retriveUserAddress);
+
+
+router.post("/user/address", [
+  body("user_id").isInt().withMessage("User ID must be an integer"),
+  body("address_line1").notEmpty().withMessage("Address line is required"),
+  body("city").notEmpty().withMessage("City is required"),
+  body("state").notEmpty().withMessage("State is required"),
+  body("postal_code").notEmpty().withMessage("Postal code is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+], db.addUserAddress);
+
 module.exports = router;

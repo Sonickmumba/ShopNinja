@@ -1,7 +1,7 @@
 // const pool = require('../config/db');
 const pool = require("..//models/database");
 const bcrypt = require("bcrypt");
-const { validationResult } = require('express-validator');
+const { validationResult } = require("express-validator");
 
 const getUsers = async () => {
   const results = await pool.query("SELECT * FROM users order by id asc");
@@ -46,11 +46,12 @@ const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   // Strong password validation
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{8,}$/
-;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{8,}$/;
   if (!passwordRegex.test(password)) {
     return res.status(400).json({
-      message: 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character',
+      message:
+        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
     });
   }
 
@@ -71,29 +72,68 @@ const registerUser = async (req, res) => {
 
     // Insert the new user into the database
     const result = await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id",
+      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email",
       [name, email, hashedPassword]
     );
 
     // added below
-    
+
     // Auto-login after signup
     req.login(result.rows[0], (err) => {
       if (err) {
-        console.error('Error logging in user after signup:', err);
-        return res.status(500).json({ message: 'Internal server error' });
+        console.error("Error logging in user after signup:", err);
+        return res.status(500).json({ message: "Internal server error" });
       }
 
       res.status(201).json({
         success: true,
-        message: 'Signup successful, user logged in',
-        user: result.rows[0]
+        message: "Signup successful, user logged in",
+        user: result.rows[0],
       });
     });
 
     // added above
-    
   } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getUserAddress = async (id) => {
+  const result = await pool.query(
+    "SELECT * FROM addresses WHERE user_id = $1",
+    [id]
+  );
+  return result.rows[0];
+};
+
+const addUserAddress = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { user_id, address_line1, city, state, postal_code, country } =
+    req.body;
+
+  try {
+    const response = await pool.query(
+      "SELECT * FROM addresses WHERE user_id = $1",
+      [user_id]
+    );
+
+    if (response.rows.length > 0) {
+       return res.status(409).json({ message: "Address already exists for the user" });
+    }
+
+    const result = await pool.query(
+      "INSERT INTO addresses (user_id, address_line1, city, state, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+      [user_id, address_line1, city, state, postal_code, country]
+    );
+
+    res.status(200).json({ message: "Address successfully added", address: result.rows[0] })
+
+  } catch (error) {
+    console.error("Error adding user address:", error.message);
     res.status(500).send(error.message);
   }
 };
@@ -105,4 +145,6 @@ module.exports = {
   updateUser,
   deleteUser,
   registerUser,
+  getUserAddress,
+  addUserAddress,
 };

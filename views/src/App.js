@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, signOut } from "./features/login/userSlice";
 import signout from "./features/util/signout";
-// import logo from './logo.svg';
-// import { Counter } from './features/counter/Counter';
 import HomePage from "./features/homePage/HomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./features/login/LoginPage";
@@ -14,30 +12,13 @@ import "./App.css";
 import Footer from "./features/homePage/Footer";
 import ProductDetails from "./features/homePage/products/ProductDetails";
 import Cart from "./features/cart/Cart";
+import Checkout from "./features/checkout/Checkout";
 
 function App() {
   const dispatch = useDispatch();
   const { isSignedIn, userProfile } = useSelector((state) => state.user);
   const [cartItems, setCartItems] = useState([]);
   const [addToCartMessage, setAddToCartMessage] = useState("");
-
-  const fetchUserProfile = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/status", {
-        credentials: "include",
-      });
-
-      const data = await response.json();
-
-      if (data?.user) {
-        dispatch(signIn(data.user));
-      } else {
-        dispatch(signOut());
-      }
-    } catch (error) {
-      console.error("Error checking sign-in status:", error);
-    }
-  };
 
   const handleSignout = (e) => {
     e.preventDefault();
@@ -79,11 +60,28 @@ function App() {
     setCartItems(updatedCartItems);
   };
 
-  console.log(cartItems)
-
   useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/status", {
+          credentials: "include",
+        });
+  
+        const data = await response.json();
+  
+        if (data?.user) {
+          dispatch(signIn(data.user))
+        } else {
+          dispatch(signOut())
+        }
+      } catch (error) {
+        console.error("Error checking sign-in status:", error);
+      }
+    };
+
     fetchUserProfile();
-  }, []);
+  }, [dispatch]);
+
 
   return (
     // <div className="App">
@@ -103,14 +101,14 @@ function App() {
             />
           }
         />
-        {/* <Route
-          path="/checkout"
+        <Route
+          path="/payment"
           element={
             <ProtectedRoute>
               <Checkout />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/user"
           element={
@@ -130,7 +128,7 @@ function App() {
           }
         />
       </Routes>
-      <Footer fetchUserProfile={fetchUserProfile} />
+      <Footer />
     </Router>
     // </div>
   );

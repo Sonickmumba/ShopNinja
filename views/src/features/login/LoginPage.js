@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { signIn } from "../login/userSlice";
 import "./LoginPage.css";
 
 function LoginPage() {
@@ -10,6 +12,7 @@ function LoginPage() {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
 
   const handleLogin = async (e) => {
@@ -30,9 +33,9 @@ function LoginPage() {
       }
 
       const data = await response.json();
-
       if (data.message === 'Login successful') {
         const redirectTo = location.state?.from?.pathname || "/home";
+        dispatch(signIn(data.user));
         navigate(redirectTo);
       } else {
         alert('Login failed');

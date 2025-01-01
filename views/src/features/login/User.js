@@ -17,7 +17,7 @@ const User = ({ handleSignout }) => {
   const handleBackClick = () => {
     navigate(-1);
   }
-
+  console.log(isSignedIn)
   return (
     <div className="user-component">
       <div className="user-profile">

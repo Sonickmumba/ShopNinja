@@ -7,7 +7,7 @@ import { FiUser } from "react-icons/fi";
 import FooterItem from "./FooterItem";
 import "./Footer.css";
 
-function Footer( { fetchUserProfile }) {
+function Footer() {
   const [activeItem, setActiveItem] = useState("Home");
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ function Footer( { fetchUserProfile }) {
   const handleUserClick = () => {
     setActiveItem("You");
     navigate("/user");
-    fetchUserProfile()
   };
 
   const handleSearchClick = () => {
@@ -35,6 +34,7 @@ function Footer( { fetchUserProfile }) {
     setActiveItem("Cart");
     navigate("/cart");
   }
+  
   return (
     <div className="footer">
       <FooterItem icon={AiOutlineHome} size={30}  label="Home" onClick={handleHomeClick} isActive={activeItem === "Home"}/>
