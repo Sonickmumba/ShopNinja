@@ -106,7 +106,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(buildPath, "index.html"));
 });
 
-// Error handling
+// Error handling - it should be the last always app.use middleware. remember it is all about stack
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: "Something went wrong!" });
